@@ -15,12 +15,16 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { InicioComponent} from './component/inicio/inicio.component';
 import { NavAdminComponent} from './component/partial/partial.component';
+import { ConsultaComponent } from './component/consulta/consulta.component';
+import { ConsultaVerComponent } from './component/consulta-ver/consulta-ver.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     InicioComponent,
-    NavAdminComponent
+    NavAdminComponent,
+    ConsultaComponent,
+    ConsultaVerComponent
   ],
   imports: [
     BrowserModule,
