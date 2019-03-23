@@ -16,5 +16,10 @@ export class FarmaciaComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  buscarProductoAgregar(nombre){
+  	$("#farmacia").modal("show");
+  }
+  cerrarModalProducto(){
+  	$("#farmacia").modal('hide');
+  }
 }
