@@ -8,17 +8,17 @@
 			  <thead class="thead-light">
 			    <tr>
 			      <th scope="col">#</th>
-			      <th scope="col">Editar</th>
 			      <th scope="col">Documento</th>
 			      <th scope="col">Nombre</th>
+			      <th scope="col">Ingresar</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			    <tr *ngFor="let aten of atencion; index as i">
 			      <th scope="row">{{i+1}}</th>
-			      <th><button class="btn btn-info" (click)="editarUsuario(aten.id_cita)">Editar</button></th>
-			      <td>{{aten.dni_ruc}}</td>
-			      <td>{{aten.nombre}}</td>
+			      <td>{{aten.dni_atendico}}</td>
+			      <td>{{aten.nombre_atendido}}</td>
+			      <th><button class="btn btn-info" [routerLink]="['/consulta',aten.id_cita]">Atender</button></th>
 			    </tr>
 			  </tbody>
 			</table>

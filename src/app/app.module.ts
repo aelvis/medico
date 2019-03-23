@@ -17,6 +17,10 @@ import { InicioComponent} from './component/inicio/inicio.component';
 import { NavAdminComponent} from './component/partial/partial.component';
 import { ConsultaComponent } from './component/consulta/consulta.component';
 import { ConsultaVerComponent } from './component/consulta-ver/consulta-ver.component';
+import { LaboratorioComponent } from './component/laboratorio/laboratorio.component';
+import { ProcedimientoComponent } from './component/procedimiento/procedimiento.component';
+import { FarmaciaComponent } from './component/farmacia/farmacia.component';
+import { HistorialComponent } from './component/historial/historial.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +28,11 @@ import { ConsultaVerComponent } from './component/consulta-ver/consulta-ver.comp
     InicioComponent,
     NavAdminComponent,
     ConsultaComponent,
-    ConsultaVerComponent
+    ConsultaVerComponent,
+    LaboratorioComponent,
+    ProcedimientoComponent,
+    FarmaciaComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,
