@@ -1,3 +1,27 @@
-<p>
-  consulta works!
-</p>
+<nav-component></nav-component>
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="h3 mb-3 font-weight-normal text-center" style="color: red">BIENVENIDOS A CONSULTAS</h1>	
+			<table class="table">
+			  <thead class="thead-light">
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Editar</th>
+			      <th scope="col">Documento</th>
+			      <th scope="col">Nombre</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr *ngFor="let aten of atencion; index as i">
+			      <th scope="row">{{i+1}}</th>
+			      <th><button class="btn btn-info" (click)="editarUsuario(aten.id_cita)">Editar</button></th>
+			      <td>{{aten.dni_ruc}}</td>
+			      <td>{{aten.nombre}}</td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+</div>
