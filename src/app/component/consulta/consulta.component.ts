@@ -10,7 +10,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ConsultaComponent implements OnInit {
 	public atencion:any = [];
-  constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router) { }
+  constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router) { 
+
+  }
 	ngOnInit(){
 		this.obtenerCitas();
 	}

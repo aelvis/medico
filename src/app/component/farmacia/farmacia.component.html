@@ -1,3 +1,13 @@
-<p>
-  farmacia works!
-</p>
+<nav-component></nav-component>
+<br>
+<div class="container">
+	<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-2"><a class="btn btn-info btn-block" style="margin-top: 5px" [routerLink]="['/consulta/',id_cita]">Exámen Clinico</a></div>
+			<div class="col-md-2"><a class="btn btn-success btn-block" style="margin-top: 5px" [routerLink]="['/consulta/laboratorio/',id_cita]">Laboratorio</a></div>
+			<div class="col-md-2"><a class="btn btn-danger btn-block" style="margin-top: 5px" [routerLink]="['/consulta/procedimiento',id_cita]">Procedimientos</a></div>
+			<div class="col-md-2"><a class="btn btn-warning btn-block" style="margin-top: 5px" [routerLink]="['/consulta/farmacia/',id_cita]">Farmacia</a></div>
+			<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/historial/',id_cita]">Historial</a></div>	
+			<div class="col-md-1"></div>      
+	</div>
+</div>
