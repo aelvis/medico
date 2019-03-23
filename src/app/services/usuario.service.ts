@@ -35,10 +35,34 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/obtenerCita', params, {headers: headers});
 	}
+	obtenerProductoFarmaciarMedico(codex_ls_sad){
+		let params = new HttpParams();
+		params = params.append('codex_ls_sad', codex_ls_sad);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/obtenerProductosFarmacia', params, {headers: headers});
+	}
 	buscarProductoModal(nombre){
 		let params = new HttpParams();
 		params = params.append('nombre', nombre);
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/buscarNombreModal', params, {headers: headers});
+	}
+	agregarFarmacia(id_cita,producto_id,cantidad){
+		let params = new HttpParams();
+		params = params.append('code_pro', producto_id);
+		params = params.append('cantidad', cantidad);
+		params = params.append('pro_cita', id_cita);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarProductoFarmacia', params, {headers: headers});
+	}
+	actualizarFarmaciaProducto(codex,via,dia,hora,indicaciones){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		params = params.append('via', via);
+		params = params.append('dia', dia);
+		params = params.append('hora', hora);
+		params = params.append('indicaciones', indicaciones);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/actualizarProductosReceta', params, {headers: headers});
 	}
 }

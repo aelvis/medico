@@ -36,34 +36,14 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
-			      <th scope="row">1</th>
-			      <td>Producto 1</td>
-			      <td>2</td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><button class="btn btn-danger">Eliminar</button></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">2</th>
-			      <td>Producto 2</td>
-			      <td>3</td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><button class="btn btn-danger">Eliminar</button></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">3</th>
-			      <td>Producto 3</td>
-			      <td>4</td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
-			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			    <tr *ngFor="let profa of producto_farmacia; index as i">
+			      <th scope="row">{{i+1}}</th>
+			      <td>{{profa.nombre}}</td>
+			      <td>{{profa.cantidad}}</td>
+			      <td><textarea class="form-control" cols="30" rows="2" #pf_via>{{profa.via}}</textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2" #pf_dia>{{profa.dia}}</textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2" #pf_hora>{{profa.hora}}</textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2" #pf_indicacion (keyup.enter)="actualizarProductoFarm(profa.id,pf_via.value,pf_dia.value,pf_hora.value,pf_indicacion.value)">{{profa.indicaciones}}</textarea></td>
 			      <td><button class="btn btn-danger">Eliminar</button></td>
 			    </tr>
 			  </tbody>
@@ -87,7 +67,7 @@
 			    <tr *ngFor="let promo of producto_modal; index as i">
 			      <th scope="row">{{i+1}}</th>
 			      <td>{{promo.nombre}}</td>
-			      <td><input type="text" class="form-control" placeholder="Agregar Cantidad"></td>
+			      <td><input type="text" class="form-control" placeholder="Agregar Cantidad" #agregarCantidadPro (keyUp.enter)="agergarCantidadFarmacia(promo.id,agregarCantidadPro.value)"></td>
 			    </tr>
 			  </tbody>
 			</table>
