@@ -84,20 +84,10 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
-			      <th scope="row">1</th>
-			      <td>Producto 1</td>
-			      <td><input type="text" class="form-control"></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">2</th>
-			      <td>Producto 2</td>
-			      <td><input type="text" class="form-control"></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">3</th>
-			      <td>Producto 3</td>
-			      <td><input type="text" class="form-control"></td>
+			    <tr *ngFor="let promo of producto_modal; index as i">
+			      <th scope="row">{{i+1}}</th>
+			      <td>{{promo.nombre}}</td>
+			      <td><input type="text" class="form-control" placeholder="Agregar Cantidad"></td>
 			    </tr>
 			  </tbody>
 			</table>

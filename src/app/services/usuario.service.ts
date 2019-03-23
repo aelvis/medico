@@ -37,7 +37,7 @@ export class UsuarioService{
 	}
 	buscarProductoModal(nombre){
 		let params = new HttpParams();
-		params = params.append('nombre', 'nombre');
+		params = params.append('nombre', nombre);
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/buscarNombreModal', params, {headers: headers});
 	}
