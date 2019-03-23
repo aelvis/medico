@@ -13,19 +13,102 @@
 	<div class="row">
 		<div class="col-md-12"><br></div>
 		<div class="col-md-12">
+			<h2 class="text-center">Buscar Producto</h2>
 			<input type="text" class="form-control" #buscar_nombre_farmacia (keyUp.enter)="buscarProductoAgregar(buscar_nombre_farmacia.value)">
+		</div>
+		<div class="col-md-12"><br></div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Productos</th>
+			      <th scope="col">Cantidad</th>
+			      <th scope="col">Vía</th>
+			      <th scope="col">Días</th>
+			      <th scope="col">Cada (HRS)</th>
+			      <th scope="col">INDICACIÓN ESPECÍFICA</th>
+			      <th scope="col">Eliminar</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">1</th>
+			      <td>Producto 1</td>
+			      <td>2</td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><button class="btn btn-danger">Eliminar</button></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">2</th>
+			      <td>Producto 2</td>
+			      <td>3</td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><button class="btn btn-danger">Eliminar</button></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">3</th>
+			      <td>Producto 3</td>
+			      <td>4</td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><textarea class="form-control" cols="30" rows="2"></textarea></td>
+			      <td><button class="btn btn-danger">Eliminar</button></td>
+			    </tr>
+			  </tbody>
+			</table>
 		</div>
 	</div>
 </div>
-<!-- Modal -->
+
+
+
+
+
 <div class="modal fade" id="farmacia" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        ...
+			<table class="table">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Productos</th>
+			      <th scope="col">Cantidad</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">1</th>
+			      <td>Producto 1</td>
+			      <td><input type="text" class="form-control"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">2</th>
+			      <td>Producto 2</td>
+			      <td><input type="text" class="form-control"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">3</th>
+			      <td>Producto 3</td>
+			      <td><input type="text" class="form-control"></td>
+			    </tr>
+			  </tbody>
+			</table>
       </div>
       <div class="modal-footer">
-        <button (click)="cerrarModalProducto()" class="btn btn-secondary" >Close</button>
+        <button (click)="cerrarModalProducto()" class="btn btn-secondary" >Cerrar</button>
       </div>
     </div>
   </div>
