@@ -16,7 +16,32 @@ export class FarmaciaComponent implements OnInit {
 
   ngOnInit() {
   }
+ 	showSuccess(titulo,mensaje) {
+    	this.toastr.success(mensaje, titulo);
+  	}
+  	showError(titulo,mensaje) {
+    	this.toastr.error(mensaje, titulo);
+  	}
   buscarProductoAgregar(nombre){
+  	this._usuarioService.buscarProductoModal(nombre).subscribe(
+  		res => {
+				if(res["mensaje"].terminar){
+				  	localStorage.clear();
+				  	this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].productos){
+						this.producto = res["mensaje"].productos;
+						this.actualizar = true;
+					}else{
+						this.producto = "No hay productos...";
+						this.actualizar = true;
+					}
+				}
+  		},
+  		error => {
+  			this.showError("Alerta","Error de Internet");
+  		}
+  	);
   	$("#farmacia").modal("show");
   }
   cerrarModalProducto(){
