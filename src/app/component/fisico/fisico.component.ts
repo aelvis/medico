@@ -12,8 +12,10 @@ export class FisicoComponent implements OnInit {
 	public cargar_inicio:boolean;
 	public cargar_fisico:boolean;
 	public cargar_diagnostico:boolean;
-	public fisico:boolean;
-	public diagnostico:boolean;
+	public fisico;
+	public diagnostico;
+	public lista_fisico;
+	public lista_diagnostico;
   	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) { 
   		this.route.params.forEach(x => this.id_cita = x['id_cita']);
   		this.cargar_inicio = true;
@@ -53,4 +55,56 @@ export class FisicoComponent implements OnInit {
 	  		}
 	  	);
   	}
+	buscarFisicoComponent(buscar){
+		$('#fisico_modal').modal('show');
+		this.cargar_fisico = false;
+	  	this._usuarioService.buscarFisicoService(buscar).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].busqueda.length > 0){
+						this.lista_fisico = res["mensaje"].busqueda;
+						this.cargar_fisico = true;
+					}else{
+						this.showError("Alerta","Volver a Intentarlo");
+						this.cargar_fisico = false;
+						$('#fisico_modal').modal('hide');
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  			this.cargar_fisico = false;
+	  			$('#fisico_modal').modal('hide');
+	  		}
+	  	);
+	}
+	buscarDiagnosticoComponent(buscar){
+		$('#diagnostico_modal').modal('show');
+		this.cargar_diagnostico = false;
+	  	this._usuarioService.buscarDiagnosticoService(buscar).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].busqueda.length > 0){
+						this.lista_diagnostico = res["mensaje"].busqueda;
+						this.cargar_diagnostico = true;
+					}else{
+						this.showError("Alerta","Volver a Intentarlo");
+						this.cargar_diagnostico = false;
+						$('#diagnostico_modal').modal('hide');
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  			this.cargar_diagnostico = false;
+	  			$('#diagnostico_modal').modal('hide');
+	  		}
+	  	);
+	}
 }

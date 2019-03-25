@@ -15,7 +15,7 @@
 		<div class="col-md-6">
 			<br><br>
 			<h2 class="text-center">EXAMEN FISICO</h2>
-			<input type="text" #buscar_examen_fisico class="form-control is-valid" (KeyUp.enter)="buscarExamenFisico(buscar_examen_fisico.value)"> <br>
+			<input type="text" #buscar_examen_fisico class="form-control is-valid" (KeyUp.enter)="buscarFisicoComponent(buscar_examen_fisico.value)"> <br>
 			<table *ngIf="cargar_inicio == true" class="table">
 			  <thead class="thead-dark">
 			    <tr>
@@ -42,7 +42,7 @@
 		<div class="col-md-6">
 			<br><br>
 			<h2 class="text-center">DIAGNÓSTICO</h2>
-			<input type="text" #buscar_diagnostico class="form-control is-valid" (KeyUp.enter)="buscarDiagnostico(buscar_diagnostico.value)"> <br>
+			<input type="text" #buscar_diagnostico class="form-control is-valid" (KeyUp.enter)="buscarDiagnosticoComponent(buscar_diagnostico.value)"> <br>
 			<table *ngIf="cargar_inicio == true" class="table">
 			  <thead class="thead-dark">
 			    <tr>
@@ -67,4 +67,111 @@
 			</table>
 		</div>
 	</div>
+</div>
+<div class="modal fade" id="fisico_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+		<table *ngIf="cargar_fisico == true" class="table">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Nombre</th>
+		      <th scope="col">Cantidad</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr *ngFor="let lis_fis of lista_fisico; index as i">
+		      <th scope="row">{{i+1}}</th>
+		      <td>{{lis_fis.descripcion}}</td>
+		      <td><button class="btn btn-success" (click)="agregarFisico(lis_fis.id_examen_fisico)">Agregar</button></td>
+		    </tr>
+		  </tbody>
+		</table>
+		<div *ngIf="cargar_fisico == false">
+			<div class="spinner-grow text-primary" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-secondary" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-success" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-danger" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-warning" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-info" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-light" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-dark" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="diagnostico_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+		<table *ngIf="cargar_diagnostico == true" class="table">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Nombre</th>
+		      <th scope="col">Cantidad</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr >
+		    <tr *ngFor="let diag of lista_diagnostico; index as i">
+		      <th scope="row">{{i+1}}</th>
+		      <td>{{diag.descripcion}}</td>
+		      <td><button class="btn btn-success" (click)="agregarDiagnostico(diag.id_diagnostico)">Agregar</button></td>
+		    </tr>
+		  </tbody>
+		</table>
+		<div *ngIf="cargar_diagnostico == false">
+			<div class="spinner-grow text-primary" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-secondary" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-success" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-danger" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-warning" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-info" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-light" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-dark" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
 </div>

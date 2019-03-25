@@ -211,4 +211,16 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/obtenerAnteAnam', params, {headers: headers});
 	}
+	buscarFisicoService(buscar){
+		let params = new HttpParams();
+		params = params.append('buscar', buscar);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/buscarFisico', params, {headers: headers});
+	}
+	buscarDiagnosticoService(buscar){
+		let params = new HttpParams();
+		params = params.append('buscar', buscar);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/buscarDiagnostico', params, {headers: headers});
+	}
 }
