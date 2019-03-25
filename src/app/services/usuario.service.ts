@@ -249,4 +249,44 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/eliminarDiagnostico', params, {headers: headers});	
 	}
+	agregarAntecedentesService(code_citrica,descripcion){
+		let params = new HttpParams();
+		params = params.append('code_citrica', code_citrica);
+		params = params.append('agregar', descripcion);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarAntecedentes', params, {headers: headers});
+	}
+	agregarAnamnesisService(code_citrica,descripcion){
+		let params = new HttpParams();
+		params = params.append('code_citrica', code_citrica);
+		params = params.append('agregar', descripcion);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarAnamnesis', params, {headers: headers});
+	}
+	actualizarAntecedentesService(id,descripcion){
+		let params = new HttpParams();
+		params = params.append('agregar', descripcion);
+		params = params.append('codex', id);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/actualizarAntecedentes', params, {headers: headers});
+	}
+	actualizarAnamnesisService(id,descripcion){
+		let params = new HttpParams();
+		params = params.append('agregar', descripcion);
+		params = params.append('codex', id);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/actualizarAnamnesis', params, {headers: headers});
+	}
+	eliminarAntecedentesService(codex){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/eliminarAntecedentes', params, {headers: headers});	
+	}
+	eliminarAnamnesisService(codex){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/eliminarAnamnesis', params, {headers: headers});	
+	}
 }

@@ -2,11 +2,11 @@
 <br>
 <div class="container">
 	<div class="row">
-		<div class="col-md-2"><a class="btn btn-info btn-block" style="margin-top: 5px" [routerLink]="['/consulta/',id_cita]">Exámen Clinico</a></div>
-		<div class="col-md-2"><a class="btn btn-primary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/fisico/',id_cita]">Físico</a></div>
-		<div class="col-md-2"><a class="btn btn-success btn-block" style="margin-top: 5px" [routerLink]="['/consulta/laboratorio/',id_cita]">Laboratorio</a></div>
-		<div class="col-md-2"><a class="btn btn-danger btn-block" style="margin-top: 5px" [routerLink]="['/consulta/procedimiento',id_cita]">Procedimientos</a></div>
-		<div class="col-md-2"><a class="btn btn-warning btn-block" style="margin-top: 5px" [routerLink]="['/consulta/farmacia/',id_cita]">Farmacia</a></div>
+		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/',id_cita]">Exámen Clinico</a></div>
+		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/fisico/',id_cita]">Físico</a></div>
+		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/laboratorio/',id_cita]">Laboratorio</a></div>
+		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/procedimiento',id_cita]">Procedimientos</a></div>
+		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/farmacia/',id_cita]">Farmacia</a></div>
 		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/historial/',id_cita]">Historial</a></div>
 	</div>  
 </div>
@@ -15,7 +15,7 @@
 		<div class="col-md-6">
 			<br><br>
 			<h2 class="text-center">ANTECEDENTES</h2>
-			<textarea #agregar_ante class="form-control is-valid" (KeyUp.enter)="agregarAntecedentes(agregar_ante.value)" cols="20" rows="3"></textarea><br>
+			<textarea [(ngModel)]="agregar_ante"  class="form-control is-valid" (KeyUp.enter)="agregarAntecedentesController(agregar_ante)" cols="20" rows="3"></textarea><br>
 			<table *ngIf="cargar_inicio == true" class="table">
 			  <thead class="thead-dark">
 			    <tr>
@@ -25,18 +25,44 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr *ngFor="let pro of procedimiento; index as i">
-			      <th scope="row">1</th>
-			      <td>{{pro.descripcion}}</td>
-			      <td><button *ngIf="eliminar_procedimiento == true" class="btn btn-danger btn-block" (click)="eliminarProcedimiento(pro.id)">Eliminar</button></td>
+			    <tr *ngFor="let pro of antecedentes; index as i">
+			      <th scope="row">{{i+1}}</th>
+			      <td><textarea cols="30" rows="3" class="form-control" #pro_ante (KeyUp.enter)="actualizarAntecedentesController(pro.id_cita_examen_clinico_antecedentes,pro_ante.value)">{{pro.descripcion}}</textarea></td> 
+			      <td><button *ngIf="eliminar_antecedentes == true" class="btn btn-danger btn-block" (click)="eliminarAnteController(pro.id_cita_examen_clinico_antecedentes)">Eliminar</button></td>
 			    </tr>
 			  </tbody>
 			</table>
+					<div *ngIf="eliminar_antecedentes == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
 		</div>
 		<div class="col-md-6">
 			<br><br>
 			<h2 class="text-center">ANAMNESIS</h2>
-			<textarea #agregar_anamne class="form-control is-valid" (KeyUp.enter)="agregarAnamnesis(agregar_anamne.value)" cols="20" rows="3"></textarea><br>
+			<textarea [(ngModel)]="agregar_ana" class="form-control is-valid" (KeyUp.enter)="agregarAnamnesisController(agregar_ana)" cols="20" rows="3"></textarea><br>
 			<table *ngIf="cargar_inicio == true" class="table">
 			  <thead class="thead-dark">
 			    <tr>
@@ -46,13 +72,39 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr *ngFor="let ciru of cirugia; index as i">
-			      <th scope="row">1</th>
-			      <td>{{ciru.descripcion}}</td>
-			      <td><button *ngIf="eliminar_cirugia == true" class="btn btn-danger btn-block" (click)="eliminarCirugia(ciru.id)">Eliminar</button></td>
+			    <tr *ngFor="let ciru of anamnesis; index as i">
+			      <th scope="row">{{i+1}}</th>
+			      <td><textarea cols="30" rows="3" class="form-control" #ciru_anam (KeyUp.enter)="actualizarAnamnesisController(ciru.id_cita_examen_clinico_anamnesis,ciru_anam.value)">{{ciru.descripcion}}</textarea></td>
+			      <td><button *ngIf="eliminar_anam == true" class="btn btn-danger btn-block" (click)="eliminarAnamController(ciru.id_cita_examen_clinico_anamnesis)">Eliminar</button></td>
 			    </tr>
 			  </tbody>
 			</table>
+					<div *ngIf="eliminar_anam == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
 		</div>
 	</div>
 </div>
