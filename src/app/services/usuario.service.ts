@@ -65,6 +65,12 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/actualizarProductosReceta', params, {headers: headers});
 	}
+	eliminarProdFarService(codex){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/eliminarProFar', params, {headers: headers});
+	}
 	obtenerLaboDiag(codex){
 		let params = new HttpParams();
 		params = params.append('codex_ls_sad', codex);
@@ -78,5 +84,46 @@ export class UsuarioService{
 		params = params.append('cantidad', cantidad);
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/agregarLaboratorio', params, {headers: headers});
+	}
+	actualizarlabo(id,cantidad_lab,indicacion_lab,cpt_lab){
+		let params = new HttpParams();
+		params = params.append('cantidad', cantidad_lab);
+		params = params.append('indicacion', indicacion_lab);
+		params = params.append('cpt', cpt_lab);
+		params = params.append('codex', id);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/actualizarLaboratorio', params, {headers: headers});
+	}
+	buscarLabo(buscar){
+		let params = new HttpParams();
+		params = params.append('buscar', buscar);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/buscarLaboratorio', params, {headers: headers});
+	}
+	eliminarLab(codex){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/eliminarLaboratorio', params, {headers: headers});	
+	}
+	agregarDiag(code_citrica,codex,cantidad){
+		let params = new HttpParams();
+		params = params.append('code_citrica', code_citrica);
+		params = params.append('code_diag', codex);
+		params = params.append('cantidad', cantidad);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarExamenes', params, {headers: headers});
+	}
+	buscarDiag(buscar){
+		let params = new HttpParams();
+		params = params.append('buscar', buscar);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/buscarExamenes', params, {headers: headers});
+	}
+	eliminarDiag(codex){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/eliminarExamenes', params, {headers: headers});	
 	}
 }

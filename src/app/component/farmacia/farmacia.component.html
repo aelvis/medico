@@ -23,7 +23,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<table class="table">
-			  <thead class="thead-dark">
+			  <thead *ngIf="cargar_inicio == true" class="thead-dark">
 			    <tr>
 			      <th scope="col">#</th>
 			      <th scope="col">Productos</th>
@@ -44,10 +44,62 @@
 			      <td><textarea class="form-control" cols="30" rows="2" #pf_dia>{{profa.dia}}</textarea></td>
 			      <td><textarea class="form-control" cols="30" rows="2" #pf_hora>{{profa.hora}}</textarea></td>
 			      <td><textarea class="form-control" cols="30" rows="2" #pf_indicacion (keyup.enter)="actualizarProductoFarm(profa.id,pf_via.value,pf_dia.value,pf_hora.value,pf_indicacion.value)">{{profa.indicaciones}}</textarea></td>
-			      <td><button class="btn btn-danger">Eliminar</button></td>
+			      <td><button *ngIf="eliminar_far == true" class="btn btn-danger" (click)="eliminarProdFar(profa.id)">Eliminar</button></td>
 			    </tr>
 			  </tbody>
 			</table>
+					<div *ngIf="cargar_inicio == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+					<div *ngIf="eliminar_far == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
 		</div>
 	</div>
 </div>
@@ -55,7 +107,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-			<table class="table">
+			<table *ngIf="agregar_far == true" class="table">
 			  <thead class="thead-dark">
 			    <tr>
 			      <th scope="col">#</th>
@@ -71,6 +123,32 @@
 			    </tr>
 			  </tbody>
 			</table>
+					<div *ngIf="agregar_far == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
       </div>
       <div class="modal-footer">
         <button (click)="cerrarModalProducto()" class="btn btn-secondary" >Cerrar</button>

@@ -13,61 +13,163 @@
 </div>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-12"><br><br></div>
-		<div class="col-md-12"><h2 class="text-center" data-toggle="modal" data-target="#laboratorio_lab">LABORATORIO</h2></div>
-		<div class="col-md-12">
-			<table class="table">
-			  <thead class="thead-dark">
-			    <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">Laboratorio</th>
-			      <th scope="col">Cantidad</th>
-			      <th scope="col">Indicación Específica</th>
-			      <th scope="col">CPT</th>
-			      <th scope="col">Eliminar</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr *ngFor="let lab of laboratorio; index as i">
-			      <th scope="row">{{i+1}}</th>
-			      <td>{{lab.descripcion}}</td>
-			      <td><textarea cols="30" rows="5" #cantidad_lab>{{lab.cantidad}}</textarea></td>
-			      <td><textarea cols="30" rows="5" #indicacion_lab>{{lab.indicacion}}</textarea></td>
-			      <td><textarea cols="30" rows="5" #cpt_lab (KeyUp.enter)="actualizarLab(lab.id,cantidad_lab.value,indicacion_lab.value,cpt_lab.value)">{{lab.cpt}}</textarea></td>
-			      <td><button class="btn btn-warning btn-block" (click)="eliminarLab(lab.id)">Eliminar</button></td>
-			    </tr>
-			  </tbody>
-			</table>
+		<div class="col-md-6">
+				<br><br>
+				<h2 class="text-center">LABORATORIO</h2>
+				<input type="text" #buscar_lab class="form-control is-valid" (KeyUp.enter)="buscarlab(buscar_lab.value)"> <br>
+					<table *ngIf="cargar_inicio == true" class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Laboratorio</th>
+					      <th scope="col">Cantidad</th>
+					      <th scope="col">Indicación Específica</th>
+					      <th scope="col">CPT</th>
+					      <th scope="col">Eliminar</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr *ngFor="let lab of laboratorio; index as i">
+					      <th scope="row">{{i+1}}</th>
+					      <td>{{lab.descripcion}}</td>
+					      <td><textarea class="form-control" cols="20" rows="3" #cantidad_lab>{{lab.cantidad}}</textarea></td>
+					      <td><textarea class="form-control" cols="20" rows="3" #indicacion_lab>{{lab.indicacion}}</textarea></td>
+					      <td><textarea class="form-control" cols="20" rows="3" #cpt_lab (KeyUp.enter)="actualizarLab(lab.id,cantidad_lab.value,indicacion_lab.value,cpt_lab.value)">{{lab.cpt}}</textarea></td>
+					      <td><button *ngIf="eliminar_lab == true" class="btn btn-danger btn-block" (click)="eliminarLab(lab.id)">Eliminar</button></td>
+					    </tr>
+					  </tbody>
+					</table>
+					<div *ngIf="cargar_inicio == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+					<div *ngIf="eliminar_lab == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
 		</div>
-	</div>
-</div>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12"><br><br></div>
-		<div class="col-md-12"><h2 class="text-center" data-toggle="modal" data-target="#examen_diag">DIAGNOSTICO POR IMAGENES - EXÁMENES</h2></div>
-		<div class="col-md-12">
-			<table class="table">
-			  <thead class="thead-dark">
-			    <tr>
-			      <th scope="col">#</th>	 
-			      <th scope="col">Laboratorio</th>
-			      <th scope="col">Cantidad</th>
-			      <th scope="col">Indicación Específica</th>
-			      <th scope="col">CPT</th>
-				  <th>Eliminar</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr *ngFor="let ex of examen; index as i">
-			      <th scope="row">{{i+1}}</th>
-			      <td>{{ex.descripcion}}</td>
-			      <td><textarea cols="30" rows="5" #cantidad_ex>{{ex.cantidad}}</textarea></td>
-			      <td><textarea cols="30" rows="5" #indicacion_ex>{{ex.indicacion}}</textarea></td>
-			      <td><textarea cols="30" rows="5" #cpt_ex (KeyUp.enter)="actualizarDiag(ex.id,cantidad_ex.value,indicacion_ex.value,cpt_ex.value)">{{ex.cpt}}</textarea></td>
-			      <td><button class="btn btn-warning btn-block" (click)="eliminarDiag(ex.id)">Eliminar</button></td>
-			    </tr>
-			  </tbody>
-			</table>
+		<div class="col-md-6">
+				<br><br>
+				<h2 class="text-center">DIAGNOSTICO POR IMAGENES - EXÁMENES</h2>
+				<input type="text" #buscar_diag class="form-control is-valid" (KeyUp.enter)="buscarDiag(buscar_diag.value)"> <br>
+					<table *ngIf="cargar_inicio == true" class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">#</th>	 
+					      <th scope="col">Laboratorio</th>
+					      <th scope="col">Cantidad</th>
+					      <th scope="col">Indicación Específica</th>
+					      <th scope="col">CPT</th>
+						  <th>Eliminar</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr *ngFor="let ex of examen; index as i">
+					      <th scope="row">{{i+1}}</th>
+					      <td>{{ex.descripcion}}</td>
+					      <td><textarea class="form-control" cols="30" rows="3" #cantidad_ex>{{ex.cantidad}}</textarea></td>
+					      <td><textarea class="form-control" cols="30" rows="3" #indicacion_ex>{{ex.indicacion}}</textarea></td>
+					      <td><textarea class="form-control" cols="30" rows="3" #cpt_ex (KeyUp.enter)="actualizarDiag(ex.id,cantidad_ex.value,indicacion_ex.value,cpt_ex.value)">{{ex.cpt}}</textarea></td>
+					      <td><button *ngIf="eliminar_diag == true" class="btn btn-danger btn-block" (click)="eliminarDiag(ex.id)">Eliminar</button></td>
+					    </tr>
+					  </tbody>
+					</table>
+					<div *ngIf="cargar_inicio == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+					<div *ngIf="eliminar_diag == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
 		</div>
 	</div>
 </div>
@@ -75,7 +177,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-		<table class="table">
+		<table *ngIf="cargar_lab == true" class="table">
 		  <thead class="thead-dark">
 		    <tr>
 		      <th scope="col">#</th>
@@ -87,10 +189,36 @@
 		    <tr *ngFor="let lis_lab of lista_laboratorio; index as i">
 		      <th scope="row">{{i+1}}</th>
 		      <td>{{lis_lab.descripcion}}</td>
-		      <td><input type="text" class="form-control" #cantidad_lab (KeyUp.enter)="agregarLabList(lis_lab.id_laboratorio, cantidad_lab.value)"></td>
+		      <td><input type="number" class="form-control" #cantidad_lab (KeyUp.enter)="agregarLabList(lis_lab.id_laboratorio, cantidad_lab.value)"></td>
 		    </tr>
 		  </tbody>
 		</table>
+		<div *ngIf="cargar_lab == false">
+			<div class="spinner-grow text-primary" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-secondary" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-success" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-danger" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-warning" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-info" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-light" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-dark" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
@@ -102,7 +230,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-		<table class="table">
+		<table *ngIf="cargar_diag == true" class="table">
 		  <thead class="thead-dark">
 		    <tr>
 		      <th scope="col">#</th>
@@ -115,10 +243,36 @@
 		    <tr *ngFor="let lis_dia of lista_diag; index as i">
 		      <th scope="row">{{i+1}}</th>
 		      <td>{{lis_dia.descripcion}}</td>
-		      <td><input type="text" class="form-control" #cantidad_diag (KeyUp.enter)="agregarDiagList(lis_dia.id_diagnostico_imagenes_examen, cantidad_diag.value)"></td>
+		      <td><input type="number" class="form-control" #cantidad_diag (KeyUp.enter)="agregarDiagList(lis_dia.id_diagnostico_imagenes_examen, cantidad_diag.value)"></td>
 		    </tr>
 		  </tbody>
 		</table>
+		<div *ngIf="cargar_diag == false">
+			<div class="spinner-grow text-primary" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-secondary" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-success" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-danger" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-warning" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-info" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-light" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+			<div class="spinner-grow text-dark" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
