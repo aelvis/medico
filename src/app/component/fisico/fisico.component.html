@@ -21,23 +21,69 @@
 			    <tr>
 					<th scope="col">#</th>
 					<th scope="col">Examen Fisico</th>
-					<th scope="col">Cantidad</th>
-					<th scope="col">Indicación Específica</th>
-					<th scope="col">CPT</th>
 					<th scope="col">Eliminar</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr *ngFor="let pro of procedimiento; index as i">
+			    <tr *ngFor="let fis of fisico; index as i">
 			      <th scope="row">1</th>
-			      <td>{{pro.descripcion}}</td>
-			      <td><textarea class="form-control" cols="20" rows="3" #cantidad_pro>{{pro.cantidad}}</textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" #indicacion_pro>{{pro.indicacion}}</textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" #cpt_pro (KeyUp.enter)="actualizarProcedimiento(pro.id,cantidad_pro.value,indicacion_pro.value,cpt_pro.value)">{{pro.cpt}}</textarea></td>
-			      <td><button *ngIf="eliminar_procedimiento == true" class="btn btn-danger btn-block" (click)="eliminarProcedimiento(pro.id)">Eliminar</button></td>
+			      <td>{{fis.descripcion}}</td>
+			      <td><button *ngIf="eliminar_fisico == true" class="btn btn-danger btn-block" (click)="eliminarFisicoComponent(fis.id)">Eliminar</button></td>
 			    </tr>
 			  </tbody>
 			</table>
+					<div *ngIf="cargar_inicio == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+					<div *ngIf="eliminar_fisico == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
 		</div>
 		<div class="col-md-6">
 			<br><br>
@@ -48,23 +94,69 @@
 			    <tr>
 					<th scope="col">#</th>
 					<th scope="col">Diagnóstico</th>
-					<th scope="col">Cantidad</th>
-					<th scope="col">Indicación Específica</th>
-					<th scope="col">CPT</th>
 					<th scope="col">Eliminar</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr *ngFor="let ciru of cirugia; index as i">
+			    <tr *ngFor="let diag of diagnostico; index as i">
 			      <th scope="row">1</th>
-			      <td>{{ciru.descripcion}}</td>
-			      <td><textarea class="form-control" cols="20" rows="3" #cantidad_ciru>{{ciru.cantidad}}</textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" #indicacion_ciru>{{ciru.indicacion}}</textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" #cpt_ciru (KeyUp.enter)="actualizarCirugia(ciru.id,cantidad_ciru.value,indicacion_ciru.value,cpt_ciru.value)">{{ciru.cpt}}</textarea></td>
-			      <td><button *ngIf="eliminar_cirugia == true" class="btn btn-danger btn-block" (click)="eliminarCirugia(ciru.id)">Eliminar</button></td>
+			      <td>{{diag.descripcion}}</td>
+			      <td><button *ngIf="eliminar_diagnostico == true" class="btn btn-danger btn-block" (click)="eliminarDiagnosticoComponent(diag.id)">Eliminar</button></td>
 			    </tr>
 			  </tbody>
 			</table>
+					<div *ngIf="cargar_inicio == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
+					<div *ngIf="eliminar_diagnostico == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
 		</div>
 	</div>
 </div>
@@ -84,7 +176,7 @@
 		    <tr *ngFor="let lis_fis of lista_fisico; index as i">
 		      <th scope="row">{{i+1}}</th>
 		      <td>{{lis_fis.descripcion}}</td>
-		      <td><button class="btn btn-success" (click)="agregarFisico(lis_fis.id_examen_fisico)">Agregar</button></td>
+		      <td><button class="btn btn-success" (click)="agregarFisicoComponent(lis_fis.id_examen_fisico)">Agregar</button></td>
 		    </tr>
 		  </tbody>
 		</table>
@@ -138,7 +230,7 @@
 		    <tr *ngFor="let diag of lista_diagnostico; index as i">
 		      <th scope="row">{{i+1}}</th>
 		      <td>{{diag.descripcion}}</td>
-		      <td><button class="btn btn-success" (click)="agregarDiagnostico(diag.id_diagnostico)">Agregar</button></td>
+		      <td><button class="btn btn-success" (click)="agregarDiagnosticoComponent(diag.id_diagnostico)">Agregar</button></td>
 		    </tr>
 		  </tbody>
 		</table>

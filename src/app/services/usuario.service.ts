@@ -223,4 +223,30 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/buscarDiagnostico', params, {headers: headers});
 	}
+	agregarFisicoService(code_citrica,codex){
+		let params = new HttpParams();
+		params = params.append('code_citrica', code_citrica);
+		params = params.append('code_pro', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarFisico', params, {headers: headers});
+	}
+	agregarDiagnosticoService(code_citrica,codex){
+		let params = new HttpParams();
+		params = params.append('code_citrica', code_citrica);
+		params = params.append('code_pro', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarDiagnostico', params, {headers: headers});
+	}
+	eliminarFisicoService(codex){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/eliminarFisico', params, {headers: headers});	
+	}
+	eliminarDiagnosticoService(codex){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/eliminarDiagnostico', params, {headers: headers});	
+	}
 }

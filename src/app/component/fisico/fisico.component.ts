@@ -16,9 +16,13 @@ export class FisicoComponent implements OnInit {
 	public diagnostico;
 	public lista_fisico;
 	public lista_diagnostico;
+	public eliminar_fisico;
+	public eliminar_diagnostico;
   	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) { 
   		this.route.params.forEach(x => this.id_cita = x['id_cita']);
   		this.cargar_inicio = true;
+  		this.eliminar_fisico = true;
+		this.eliminar_diagnostico = true;
   	}
    	showSuccess(titulo,mensaje) {
     	this.toastr.success(mensaje, titulo);
@@ -104,6 +108,98 @@ export class FisicoComponent implements OnInit {
 	  			this.showError("Alerta","Error de Internet");
 	  			this.cargar_diagnostico = false;
 	  			$('#diagnostico_modal').modal('hide');
+	  		}
+	  	);
+	}
+	agregarFisicoComponent(codex){
+		this.cargar_fisico = false;
+	  	this._usuarioService.agregarFisicoService(this.id_cita,codex).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.obtenerFisDiag();
+					}else{
+						this.showError("Alerta","No hay Productos Agregados");
+						this.cargar_fisico = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  			this.cargar_fisico = true;
+	  		}
+	  	);
+	}
+	agregarDiagnosticoComponent(codex){
+		this.cargar_diagnostico = false;
+	  	this._usuarioService.agregarDiagnosticoService(this.id_cita,codex).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.obtenerFisDiag();
+					}else{
+						this.showError("Alerta","No hay Productos Agregados");
+						this.cargar_diagnostico = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.cargar_diagnostico = true;
+	  			this.showError("Alerta","Error de Internet");
+	  		}
+	  	);
+	}
+	eliminarFisicoComponent(codex){
+		this.eliminar_fisico = false;
+	  	this._usuarioService.eliminarFisicoService(codex).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.eliminar_fisico = true;
+						this.obtenerFisDiag();
+						this.showSuccess("Alerta","Eliminado");
+					}else{
+						this.showError("Alerta","Internet Lento - Volver a Intentarlo");
+						this.eliminar_fisico = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  			this.eliminar_fisico = true;
+	  		}
+	  	);
+	}
+	eliminarDiagnosticoComponent(codex){
+		this.eliminar_diagnostico = false;
+	  	this._usuarioService.eliminarDiagnosticoService(codex).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.eliminar_diagnostico = true;
+						this.obtenerFisDiag();
+						this.showSuccess("Alerta","Eliminado");
+					}else{
+						this.showError("Alerta","Internet Lento - Volver a Intentarlo");
+						this.eliminar_diagnostico = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  			this.eliminar_diagnostico = true;
 	  		}
 	  	);
 	}
