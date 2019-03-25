@@ -15,7 +15,7 @@
 		<div class="col-md-6">
 			<br><br>
 			<h2 class="text-center">ANTECEDENTES</h2>
-			<input type="text" #buscar_examen_fisico class="form-control is-valid" (KeyUp.enter)="buscarExamenFisico(buscar_examen_fisico.value)"> <br>
+			<textarea #agregar_ante class="form-control is-valid" (KeyUp.enter)="agregarAntecedentes(agregar_ante.value)" cols="20" rows="3"></textarea><br>
 			<table *ngIf="cargar_inicio == true" class="table">
 			  <thead class="thead-dark">
 			    <tr>
@@ -36,7 +36,7 @@
 		<div class="col-md-6">
 			<br><br>
 			<h2 class="text-center">ANAMNESIS</h2>
-			<input type="text" #buscar_diagnostico class="form-control is-valid" (KeyUp.enter)="buscarDiagnostico(buscar_diagnostico.value)"> <br>
+			<textarea #agregar_anamne class="form-control is-valid" (KeyUp.enter)="agregarAnamnesis(agregar_anamne.value)" cols="20" rows="3"></textarea><br>
 			<table *ngIf="cargar_inicio == true" class="table">
 			  <thead class="thead-dark">
 			    <tr>

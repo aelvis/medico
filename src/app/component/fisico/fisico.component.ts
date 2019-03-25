@@ -42,7 +42,7 @@ export class FisicoComponent implements OnInit {
 						this.cargar_fisico = true;
 						this.cargar_diagnostico = true;
 					}else{
-						this.showError("Alerta","No hay Productos Agregados");
+						this.showError("Alerta","Error de Internet - Volver a Intentarlo");
 						this.cargar_inicio = true;
 					}
 				}

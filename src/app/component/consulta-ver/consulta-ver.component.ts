@@ -42,7 +42,7 @@ export class ConsultaVerComponent implements OnInit {
 						this.cargar_anamnesis = true;
 						this.cargar_antecedentes = true;
 					}else{
-						this.showError("Alerta","No hay Productos Agregados");
+						this.showError("Alerta","Error de Internet - Volver a Intentarlo");
 						this.cargar_inicio = true;
 					}
 				}
