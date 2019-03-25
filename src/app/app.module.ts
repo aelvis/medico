@@ -21,6 +21,7 @@ import { LaboratorioComponent } from './component/laboratorio/laboratorio.compon
 import { ProcedimientoComponent } from './component/procedimiento/procedimiento.component';
 import { FarmaciaComponent } from './component/farmacia/farmacia.component';
 import { HistorialComponent } from './component/historial/historial.component';
+import { FisicoComponent } from './component/fisico/fisico.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { HistorialComponent } from './component/historial/historial.component';
     LaboratorioComponent,
     ProcedimientoComponent,
     FarmaciaComponent,
-    HistorialComponent
+    HistorialComponent,
+    FisicoComponent
   ],
   imports: [
     BrowserModule,

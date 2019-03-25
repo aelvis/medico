@@ -126,4 +126,10 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/eliminarExamenes', params, {headers: headers});	
 	}
+	obtenerProCiruService(codex){
+		let params = new HttpParams();
+		params = params.append('codex_ls_sad', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/obtenerProceCiru', params, {headers: headers});
+	}
 }

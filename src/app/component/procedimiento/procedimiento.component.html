@@ -2,14 +2,13 @@
 <br>
 <div class="container">
 	<div class="row">
-		<div class="col-md-1"></div>
 		<div class="col-md-2"><a class="btn btn-info btn-block" style="margin-top: 5px" [routerLink]="['/consulta/',id_cita]">Exámen Clinico</a></div>
+		<div class="col-md-2"><a class="btn btn-primary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/fisico/',id_cita]">Físico</a></div>
 		<div class="col-md-2"><a class="btn btn-success btn-block" style="margin-top: 5px" [routerLink]="['/consulta/laboratorio/',id_cita]">Laboratorio</a></div>
 		<div class="col-md-2"><a class="btn btn-danger btn-block" style="margin-top: 5px" [routerLink]="['/consulta/procedimiento',id_cita]">Procedimientos</a></div>
 		<div class="col-md-2"><a class="btn btn-warning btn-block" style="margin-top: 5px" [routerLink]="['/consulta/farmacia/',id_cita]">Farmacia</a></div>
-		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/historial/',id_cita]">Historial</a></div>	
-		<div class="col-md-1"></div>      
-	</div>
+		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/historial/',id_cita]">Historial</a></div>
+	</div> 
 </div>
 <div class="container-fluid">
 	<div class="row">
@@ -29,28 +28,12 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
+			    <tr *ngFor="let pro of procedimiento; index as i">
 			      <th scope="row">1</th>
-			      <td>Mark</td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><button  class="btn btn-danger btn-block" >Eliminar</button></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">2</th>
-			      <td>Mark</td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><button  class="btn btn-danger btn-block" >Eliminar</button></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">3</th>
-			      <td>Mark</td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
+			      <td>{{pro.descripcion}}</td>
+			      <td><textarea class="form-control" cols="20" rows="3" >{{pro.cantidad}}</textarea></td>
+			      <td><textarea class="form-control" cols="20" rows="3" >{{pro.indicacion}}</textarea></td>
+			      <td><textarea class="form-control" cols="20" rows="3" >{{pro.cpt}}</textarea></td>
 			      <td><button  class="btn btn-danger btn-block" >Eliminar</button></td>
 			    </tr>
 			  </tbody>
@@ -90,7 +73,7 @@
 			  <thead class="thead-dark">
 			    <tr>
 					<th scope="col">#</th>
-					<th scope="col">Procedimiento</th>
+					<th scope="col">Cirugia</th>
 					<th scope="col">Cantidad</th>
 					<th scope="col">Indicación Específica</th>
 					<th scope="col">CPT</th>
@@ -98,28 +81,12 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
+			    <tr *ngFor="let ciru of cirugia; index as i">
 			      <th scope="row">1</th>
-			      <td>Mark</td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><button  class="btn btn-danger btn-block" >Eliminar</button></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">2</th>
-			      <td>Mark</td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><button  class="btn btn-danger btn-block" >Eliminar</button></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">3</th>
-			      <td>Mark</td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" ></textarea></td>
+			      <td>{{ciru.descripcion}}</td>
+			      <td><textarea class="form-control" cols="20" rows="3" >{{ciru.cantidad}}</textarea></td>
+			      <td><textarea class="form-control" cols="20" rows="3" >{{ciru.indicacion}}</textarea></td>
+			      <td><textarea class="form-control" cols="20" rows="3" >{{ciru.cpt}}</textarea></td>
 			      <td><button  class="btn btn-danger btn-block" >Eliminar</button></td>
 			    </tr>
 			  </tbody>

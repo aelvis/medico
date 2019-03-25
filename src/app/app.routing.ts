@@ -10,7 +10,7 @@ import { LaboratorioComponent } from './component/laboratorio/laboratorio.compon
 import { ProcedimientoComponent } from './component/procedimiento/procedimiento.component';
 import { FarmaciaComponent } from './component/farmacia/farmacia.component';
 import { HistorialComponent } from './component/historial/historial.component';
-
+import { FisicoComponent } from './component/fisico/fisico.component';
 import { AdminGuard } from './services/admin.guard';
 
 const appRoutes: Routes = [
@@ -24,6 +24,7 @@ const appRoutes: Routes = [
 	{path: 'consulta/procedimiento/:id_cita', component: ProcedimientoComponent, canActivate: [AdminGuard]},
 	{path: 'consulta/farmacia/:id_cita', component: FarmaciaComponent, canActivate: [AdminGuard]},
 	{path: 'consulta/historial/:id_cita', component: HistorialComponent, canActivate: [AdminGuard]},
+	{path: 'consulta/fisico/:id_cita', component: FisicoComponent, canActivate: [AdminGuard]},
 	{path: '**', component: LoginComponent},
 ];
 
