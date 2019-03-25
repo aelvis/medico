@@ -132,4 +132,32 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/obtenerProceCiru', params, {headers: headers});
 	}
+	buscarProcedimientoService(buscar){
+		let params = new HttpParams();
+		params = params.append('buscar', buscar);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/buscarProcedimiento', params, {headers: headers});
+	}
+	buscarCirugiaService(buscar){
+		let params = new HttpParams();
+		params = params.append('buscar', buscar);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/buscarCirugia', params, {headers: headers});
+	}
+	agregarProcedimientoService(code_citrica,codex,cantidad){
+		let params = new HttpParams();
+		params = params.append('code_citrica', code_citrica);
+		params = params.append('code_pro', codex);
+		params = params.append('cantidad', cantidad);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarProcedimiento', params, {headers: headers});
+	}
+	agregarCirugiaService(code_citrica,codex,cantidad){
+		let params = new HttpParams();
+		params = params.append('code_citrica', code_citrica);
+		params = params.append('code_ciru', codex);
+		params = params.append('cantidad', cantidad);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarCirugia', params, {headers: headers});
+	}
 }

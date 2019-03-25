@@ -136,7 +136,7 @@
 		    <tr *ngFor="let proce of lista_procedimiento; index as i">
 		      <th scope="row">{{i+1}}</th>
 		      <td>{{proce.descripcion}}</td>
-		      <td><input type="number" class="form-control" #cantidad_proce (KeyUp.enter)="agregarProcedimiento(proce.id_procedimientos, cantidad_proce.value)"></td>
+		      <td><input type="number" class="form-control" #cantidad_proce (KeyUp.enter)="agregarProcedimientoModal(proce.id_procedimientos, cantidad_proce.value)"></td>
 		    </tr>
 		  </tbody>
 		</table>
@@ -190,7 +190,7 @@
 		    <tr *ngFor="let ciru of lista_cirugia; index as i">
 		      <th scope="row">{{i+1}}</th>
 		      <td>{{ciru.descripcion}}</td>
-		      <td><input type="number" class="form-control" #cantidad_ciru (KeyUp.enter)="agregarCirugia(ciru.id_cirugia, cantidad_ciru.value)"></td>
+		      <td><input type="number" class="form-control" #cantidad_ciru (KeyUp.enter)="agregarCirugiaModal(ciru.id_cirugia, cantidad_ciru.value)"></td>
 		    </tr>
 		  </tbody>
 		</table>
