@@ -65,4 +65,18 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/actualizarProductosReceta', params, {headers: headers});
 	}
+	obtenerLaboDiag(codex){
+		let params = new HttpParams();
+		params = params.append('codex_ls_sad', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/obtenerLaboDiag', params, {headers: headers});
+	}
+	agregarlabo(code_citrica,codex,cantidad){
+		let params = new HttpParams();
+		params = params.append('code_citrica', code_citrica);
+		params = params.append('code_loborium', codex);
+		params = params.append('cantidad', cantidad);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarLaboratorio', params, {headers: headers});
+	}
 }
