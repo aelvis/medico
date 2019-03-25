@@ -104,6 +104,7 @@ export class LaboratorioComponent implements OnInit {
 	  	);
 	}
 	actualizarLab(id,cantidad_lab,indicacion_lab,cpt_lab){
+		this.cargar_inicio = false;
 	  	this._usuarioService.actualizarlabo(id,cantidad_lab,indicacion_lab,cpt_lab).subscribe(
 	  		res => {
 				if(res["mensaje"].terminar){
@@ -213,6 +214,26 @@ export class LaboratorioComponent implements OnInit {
 	  			this.eliminar_diag = true;
 	  		}
 	  	);
-
+	}
+	actualizarDiag(id,cantidad_lab,indicacion_lab,cpt_lab){
+		this.cargar_inicio = false;
+	  	this._usuarioService.actualizarDiag(id,cantidad_lab,indicacion_lab,cpt_lab).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.showSuccess("Alerta","Actualizar");
+						this.obtenerDiagExa();
+					}else{
+						this.showError("Alerta","Internet Lento - Volver a Intentarlo");
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  		}
+	  	);
 	}
 }

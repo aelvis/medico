@@ -31,9 +31,9 @@
 			    <tr *ngFor="let pro of procedimiento; index as i">
 			      <th scope="row">1</th>
 			      <td>{{pro.descripcion}}</td>
-			      <td><textarea class="form-control" cols="20" rows="3" >{{pro.cantidad}}</textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" >{{pro.indicacion}}</textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" >{{pro.cpt}}</textarea></td>
+			      <td><textarea class="form-control" cols="20" rows="3" #cantidad_pro>{{pro.cantidad}}</textarea></td>
+			      <td><textarea class="form-control" cols="20" rows="3" #indicacion_pro>{{pro.indicacion}}</textarea></td>
+			      <td><textarea class="form-control" cols="20" rows="3" #cpt_pro (KeyUp.enter)="actualizarProcedimiento(pro.id,cantidad_pro.value,indicacion_pro.value,cpt_pro.value)">{{pro.cpt}}</textarea></td>
 			      <td><button *ngIf="eliminar_procedimiento == true" class="btn btn-danger btn-block" (click)="eliminarProcedimiento(pro.id)">Eliminar</button></td>
 			    </tr>
 			  </tbody>
@@ -110,9 +110,9 @@
 			    <tr *ngFor="let ciru of cirugia; index as i">
 			      <th scope="row">1</th>
 			      <td>{{ciru.descripcion}}</td>
-			      <td><textarea class="form-control" cols="20" rows="3" >{{ciru.cantidad}}</textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" >{{ciru.indicacion}}</textarea></td>
-			      <td><textarea class="form-control" cols="20" rows="3" >{{ciru.cpt}}</textarea></td>
+			      <td><textarea class="form-control" cols="20" rows="3" #cantidad_ciru>{{ciru.cantidad}}</textarea></td>
+			      <td><textarea class="form-control" cols="20" rows="3" #indicacion_ciru>{{ciru.indicacion}}</textarea></td>
+			      <td><textarea class="form-control" cols="20" rows="3" #cpt_ciru (KeyUp.enter)="actualizarCirugia(ciru.id,cantidad_ciru.value,indicacion_ciru.value,cpt_ciru.value)">{{ciru.cpt}}</textarea></td>
 			      <td><button *ngIf="eliminar_cirugia == true" class="btn btn-danger btn-block" (click)="eliminarCirugia(ciru.id)">Eliminar</button></td>
 			    </tr>
 			  </tbody>

@@ -62,6 +62,7 @@ export class ProcedimientoComponent implements OnInit {
 	  	);
   	}
 	buscarProcedimientos(buscar){
+		$('#procedimientos').modal('show');
 		this.cargar_procedimiento = false;
 	  	this._usuarioService.buscarProcedimientoService(buscar).subscribe(
 	  		res => {
@@ -71,7 +72,6 @@ export class ProcedimientoComponent implements OnInit {
 				}else{
 					if(res["mensaje"].busqueda.length > 0){
 						this.lista_procedimiento = res["mensaje"].busqueda;
-						$('#procedimientos').modal('show');
 						this.cargar_procedimiento = true;
 					}else{
 						this.showError("Alerta","Volver a Intentarlo");
@@ -88,6 +88,7 @@ export class ProcedimientoComponent implements OnInit {
 	  	);
 	}
 	buscarCirugia(buscar){
+		$('#cirugias').modal('show');
 		this.cargar_cirugias = false;
 	  	this._usuarioService.buscarCirugiaService(buscar).subscribe(
 	  		res => {
@@ -98,7 +99,6 @@ export class ProcedimientoComponent implements OnInit {
 					if(res["mensaje"].busqueda.length > 0){
 						this.lista_cirugia = res["mensaje"].busqueda;
 						this.cargar_cirugias = true;
-						$('#cirugias').modal('show');
 					}else{
 						this.showError("Alerta","Volver a Intentarlo");
 						this.cargar_cirugias = false;
@@ -202,6 +202,48 @@ export class ProcedimientoComponent implements OnInit {
 	  		error => {
 	  			this.showError("Alerta","Error de Internet");
 	  			this.eliminar_cirugia = true;
+	  		}
+	  	);
+	}
+	actualizarProcedimiento(id,cantidad,indicacion,cpt){
+		this.cargar_inicio = false;
+	  	this._usuarioService.actualizarProcedimientoService(id,cantidad,indicacion,cpt).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.showSuccess("Alerta","Actualizado Finalizado");
+						this.obtenerProCiru();
+					}else{
+						this.showError("Alerta","Internet Lento - Volver a Intentarlo");
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  		}
+	  	);
+	}
+	actualizarCirugia(id,cantidad,indicacion,cpt){
+		this.cargar_inicio = false;
+	  	this._usuarioService.actualizarCirugiaService(id,cantidad,indicacion,cpt).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.showSuccess("Alerta","Actualizado Finalizado");
+						this.obtenerProCiru();
+					}else{
+						this.showError("Alerta","Internet Lento - Volver a Intentarlo");
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
 	  		}
 	  	);
 	}

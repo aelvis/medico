@@ -126,6 +126,15 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/eliminarExamenes', params, {headers: headers});	
 	}
+	actualizarDiag(id,cantidad_lab,indicacion_lab,cpt_lab){
+		let params = new HttpParams();
+		params = params.append('cantidad', cantidad_lab);
+		params = params.append('indicacion', indicacion_lab);
+		params = params.append('cpt', cpt_lab);
+		params = params.append('codex', id);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/actualizarExamenes', params, {headers: headers});
+	}
 	obtenerProCiruService(codex){
 		let params = new HttpParams();
 		params = params.append('codex_ls_sad', codex);
@@ -171,5 +180,23 @@ export class UsuarioService{
 		params = params.append('codex', codex);
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/eliminarCirugia', params, {headers: headers});	
+	}
+	actualizarProcedimientoService(id,cantidad,indicacion,cpt){
+		let params = new HttpParams();
+		params = params.append('cantidad', cantidad);
+		params = params.append('indicacion', indicacion);
+		params = params.append('cpt', cpt);
+		params = params.append('codex', id);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/actualizarProcedimiento', params, {headers: headers});
+	}
+	actualizarCirugiaService(id,cantidad,indicacion,cpt){
+		let params = new HttpParams();
+		params = params.append('cantidad', cantidad);
+		params = params.append('indicacion', indicacion);
+		params = params.append('cpt', cpt);
+		params = params.append('codex', id);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/actualizarCirugia', params, {headers: headers});
 	}
 }

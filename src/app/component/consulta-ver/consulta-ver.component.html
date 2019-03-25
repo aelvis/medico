@@ -10,3 +10,49 @@
 		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/historial/',id_cita]">Historial</a></div>
 	</div>  
 </div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<br><br>
+			<h2 class="text-center">ANTECEDENTES</h2>
+			<input type="text" #buscar_examen_fisico class="form-control is-valid" (KeyUp.enter)="buscarExamenFisico(buscar_examen_fisico.value)"> <br>
+			<table *ngIf="cargar_inicio == true" class="table">
+			  <thead class="thead-dark">
+			    <tr>
+					<th scope="col">#</th>
+					<th scope="col">Descripcion</th>
+					<th scope="col">Eliminar</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr *ngFor="let pro of procedimiento; index as i">
+			      <th scope="row">1</th>
+			      <td>{{pro.descripcion}}</td>
+			      <td><button *ngIf="eliminar_procedimiento == true" class="btn btn-danger btn-block" (click)="eliminarProcedimiento(pro.id)">Eliminar</button></td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<br><br>
+			<h2 class="text-center">ANAMNESIS</h2>
+			<input type="text" #buscar_diagnostico class="form-control is-valid" (KeyUp.enter)="buscarDiagnostico(buscar_diagnostico.value)"> <br>
+			<table *ngIf="cargar_inicio == true" class="table">
+			  <thead class="thead-dark">
+			    <tr>
+					<th scope="col">#</th>
+					<th scope="col">Descripcion</th>
+					<th scope="col">Eliminar</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr *ngFor="let ciru of cirugia; index as i">
+			      <th scope="row">1</th>
+			      <td>{{ciru.descripcion}}</td>
+			      <td><button *ngIf="eliminar_cirugia == true" class="btn btn-danger btn-block" (click)="eliminarCirugia(ciru.id)">Eliminar</button></td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+</div>
