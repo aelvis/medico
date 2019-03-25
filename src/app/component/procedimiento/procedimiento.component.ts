@@ -17,9 +17,13 @@ export class ProcedimientoComponent implements OnInit {
 	public lista_cirugia;
 	public cargar_cirugias;
 	public cargar_procedimiento;
+	public eliminar_procedimiento;
+	public eliminar_cirugia;
   constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) {
   	this.route.params.forEach(x => this.id_cita = x['id_cita']);
   	this.cargar_inicio = true;
+  	this.eliminar_procedimiento = true;
+	this.eliminar_cirugia = true;
    }
 
    	showSuccess(titulo,mensaje) {
@@ -150,6 +154,54 @@ export class ProcedimientoComponent implements OnInit {
 	  		error => {
 	  			this.cargar_cirugias = true;
 	  			this.showError("Alerta","Error de Internet");
+	  		}
+	  	);
+	}
+	eliminarProcedimiento(codex){
+		this.eliminar_procedimiento = false;
+	  	this._usuarioService.eliminarProcedimientoService(codex).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.eliminar_procedimiento = true;
+						this.obtenerProCiru();
+						this.showSuccess("Alerta","Eliminado");
+					}else{
+						this.showError("Alerta","Internet Lento - Volver a Intentarlo");
+						this.eliminar_procedimiento = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  			this.eliminar_procedimiento = true;
+	  		}
+	  	);
+	}
+	eliminarCirugia(codex){
+		this.eliminar_cirugia = false;
+	  	this._usuarioService.eliminarCirugiaService(codex).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.eliminar_cirugia = true;
+						this.obtenerProCiru();
+						this.showSuccess("Alerta","Eliminado");
+					}else{
+						this.showError("Alerta","Internet Lento - Volver a Intentarlo");
+						this.eliminar_cirugia = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  			this.eliminar_cirugia = true;
 	  		}
 	  	);
 	}

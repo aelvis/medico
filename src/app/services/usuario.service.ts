@@ -160,4 +160,16 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/agregarCirugia', params, {headers: headers});
 	}
+	eliminarProcedimientoService(codex){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/eliminarProcedimiento', params, {headers: headers});	
+	}
+	eliminarCirugiaService(codex){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/eliminarCirugia', params, {headers: headers});	
+	}
 }
