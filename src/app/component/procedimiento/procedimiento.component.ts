@@ -19,13 +19,12 @@ export class ProcedimientoComponent implements OnInit {
 	public cargar_procedimiento;
 	public eliminar_procedimiento;
 	public eliminar_cirugia;
-  constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) {
-  	this.route.params.forEach(x => this.id_cita = x['id_cita']);
-  	this.cargar_inicio = true;
-  	this.eliminar_procedimiento = true;
-	this.eliminar_cirugia = true;
-   }
-
+  	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) {
+  		this.route.params.forEach(x => this.id_cita = x['id_cita']);
+  		this.cargar_inicio = true;
+  		this.eliminar_procedimiento = true;
+		this.eliminar_cirugia = true;
+   	}
    	showSuccess(titulo,mensaje) {
     	this.toastr.success(mensaje, titulo);
    	}

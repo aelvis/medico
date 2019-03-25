@@ -199,4 +199,16 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/actualizarCirugia', params, {headers: headers});
 	}
+	obtenerFisiDiagService(codex){
+		let params = new HttpParams();
+		params = params.append('codex_ls_sad', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/obtenerFisiDiag', params, {headers: headers});
+	}
+	obtenerAnteAnamService(codex){
+		let params = new HttpParams();
+		params = params.append('codex_ls_sad', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/obtenerAnteAnam', params, {headers: headers});
+	}
 }
