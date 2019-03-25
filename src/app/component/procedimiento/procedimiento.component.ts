@@ -10,8 +10,10 @@ import { ToastrService } from 'ngx-toastr';
 export class ProcedimientoComponent implements OnInit {
 
 	public id_cita;
+	public cargar_inicio:boolean;
   constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) {
   	this.route.params.forEach(x => this.id_cita = x['id_cita']);
+  	this.cargar_inicio = true;
    }
 
   ngOnInit() {
