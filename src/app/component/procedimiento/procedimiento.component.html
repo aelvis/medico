@@ -95,7 +95,7 @@
 		<br><br>
 		<h2 class="text-center">CAJA</h2>
 		<div *ngIf="cirugia_if == false">
-			
+			<button class="btn btn-success btn-block" (click)="agregarCajaPrincipal()">Agregar Caja</button>
 		</div>
 		<div *ngIf="cirugia_if == true">
 		<input type="text" #buscar_ciru class="form-control is-valid" (KeyUp.enter)="buscarCirugia(buscar_ciru.value)"> <br>

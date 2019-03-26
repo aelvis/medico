@@ -161,11 +161,12 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/agregarProcedimiento', params, {headers: headers});
 	}
-	agregarCirugiaService(code_citrica,codex,cantidad){
+	agregarCirugiaService(code_citrica,codex,cantidad,id_caja_pago){
 		let params = new HttpParams();
 		params = params.append('code_citrica', code_citrica);
 		params = params.append('code_ciru', codex);
 		params = params.append('cantidad', cantidad);
+		params = params.append('caj', id_caja_pago);
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/agregarCirugia', params, {headers: headers});
 	}
@@ -312,5 +313,11 @@ export class UsuarioService{
 		params = params.append('codex', codex);
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/historialMedicoId', params, {headers: headers});	
+	}
+	agregarCajaPrincipalService(code_citrica){
+		let params = new HttpParams();
+		params = params.append('code_citrica', code_citrica);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarCajaPrincipal', params, {headers: headers});	
 	}
 }

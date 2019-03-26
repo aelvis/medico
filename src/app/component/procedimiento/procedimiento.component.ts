@@ -21,6 +21,7 @@ export class ProcedimientoComponent implements OnInit {
 	public eliminar_cirugia;
 	public agregar_caja;
 	public cirugia_if:boolean;
+	public id_caja_pago;
   	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) {
   		this.route.params.forEach(x => this.id_cita = x['id_cita']);
   		this.cargar_inicio = true;
@@ -46,11 +47,12 @@ export class ProcedimientoComponent implements OnInit {
 				}else{
 					if(res["mensaje"].procedimiento){
 						this.procedimiento = res["mensaje"].procedimiento;
-						if(res["mensaje"].cirugia == 0){
+						if(res["mensaje"].null == 0){
 							this.cirugia_if = false;
 						}else{
 							this.cirugia_if = true;
 							this.cirugia = res["mensaje"].cirugia;
+							this.id_caja_pago = res["mensaje"].id_caja_principal;
 						}
 						this.cargar_inicio = true;
 						this.cargar_procedimiento = true;
@@ -143,7 +145,7 @@ export class ProcedimientoComponent implements OnInit {
 	}
 	agregarCirugiaModal(codex,cantidad){
 		this.cargar_cirugias = false;
-	  	this._usuarioService.agregarCirugiaService(this.id_cita,codex,cantidad).subscribe(
+	  	this._usuarioService.agregarCirugiaService(this.id_cita,codex,cantidad,this.id_caja_pago).subscribe(
 	  		res => {
 				if(res["mensaje"].terminar){
 					localStorage.clear();
@@ -278,5 +280,27 @@ export class ProcedimientoComponent implements OnInit {
 	cerrarCaja(){
 		$('#cirugias').modal('hide');
 		this.agregar_caja = "";
+	}
+	agregarCajaPrincipal(){
+		this.cargar_procedimiento = false;
+	  	this._usuarioService.agregarCajaPrincipalService(this.id_cita).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.obtenerProCiru();
+					}else{
+						this.showError("Alerta","No hay Productos Agregados");
+						this.cargar_procedimiento = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  			this.cargar_procedimiento = true;
+	  		}
+	  	);
 	}
 }
