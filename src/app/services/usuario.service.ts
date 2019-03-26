@@ -295,4 +295,10 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/historialMedico', params, {headers: headers});	
 	}
+	agregarCajaService(descripcion){
+		let params = new HttpParams();
+		params = params.append('descripcion', descripcion);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarCaja', params, {headers: headers});	
+	}
 }

@@ -93,16 +93,16 @@
 		</div>
 		<div class="col-md-6">
 		<br><br>
-		<h2 class="text-center">CIRUGIAS</h2>
+		<h2 class="text-center">CAJA</h2>
 		<input type="text" #buscar_ciru class="form-control is-valid" (KeyUp.enter)="buscarCirugia(buscar_ciru.value)"> <br>
 			<table *ngIf="cargar_inicio == true" class="table">
 			  <thead class="thead-dark">
 			    <tr>
 					<th scope="col">#</th>
-					<th scope="col">Cirugia</th>
+					<th scope="col">Caja</th>
 					<th scope="col">Cantidad</th>
 					<th scope="col">Indicación Específica</th>
-					<th scope="col">CPT</th>
+					<th scope="col">Pago</th>
 					<th scope="col">Eliminar</th>
 			    </tr>
 			  </thead>
@@ -229,6 +229,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
+      	<label>Agregar Caja</label>
+      	<input type="text" class="form-control is-valid" [(ngModel)]="agregar_caja" (KeyUp.enter)="agregarCajaController()"><br>
 		<table *ngIf="cargar_cirugias == true" class="table">
 		  <thead class="thead-dark">
 		    <tr>
@@ -274,7 +276,7 @@
 		</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Cerrar</button>
+        <button class="btn btn-secondary btn-block" (click)="cerrarCaja()">Cerrar</button>
       </div>
     </div>
   </div>

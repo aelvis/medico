@@ -19,6 +19,7 @@ export class ProcedimientoComponent implements OnInit {
 	public cargar_procedimiento;
 	public eliminar_procedimiento;
 	public eliminar_cirugia;
+	public agregar_caja;
   	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) {
   		this.route.params.forEach(x => this.id_cita = x['id_cita']);
   		this.cargar_inicio = true;
@@ -245,5 +246,33 @@ export class ProcedimientoComponent implements OnInit {
 	  			this.showError("Alerta","Error de Internet");
 	  		}
 	  	);
+	}
+	agregarCajaController(){
+		this.cargar_cirugias = false;
+	  	this._usuarioService.agregarCajaService(this.agregar_caja).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						//$('#cirugias').modal('hide');
+						this.buscarCirugia(this.agregar_caja);
+					}else{
+						this.showError("Alerta","Error de Internet - Volver a Intentarlo");
+						this.cargar_cirugias = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.cargar_cirugias = true;
+	  			this.showError("Alerta","Error de Internet");
+	  		}
+	  	);
+
+	}
+	cerrarCaja(){
+		$('#cirugias').modal('hide');
+		this.agregar_caja = "";
 	}
 }
