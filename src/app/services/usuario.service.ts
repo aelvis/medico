@@ -289,4 +289,10 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/eliminarAnamnesis', params, {headers: headers});	
 	}
+	obtenerHistorialService(id){
+		let params = new HttpParams();
+		params = params.append('codex', id);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/historialMedico', params, {headers: headers});	
+	}
 }

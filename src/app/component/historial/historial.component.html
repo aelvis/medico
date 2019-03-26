@@ -8,5 +8,51 @@
 		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/procedimiento',id_cita]">Procedimientos</a></div>
 		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/farmacia/',id_cita]">Farmacia</a></div>
 		<div class="col-md-2"><a class="btn btn-secondary btn-block" style="margin-top: 5px" [routerLink]="['/consulta/historial/',id_cita]">Historial</a></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<br>
+			<table class="table">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">DNI</th>
+			      <th scope="col">NOMBRE</th>
+			      <th scope="col">HISTORIAL</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr *ngFor="let his of historial;index as i">
+			      <th scope="row">{{i+1}}</th>
+			      <td>{{his.dni_atendico}}</td>
+			      <td>{{his.nombre_atendido}}</td>
+			      <td><button class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Historial</button></td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
 	</div> 
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Historial del Paciente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 class="text-center">Antecedentes</h3>
+        <h3 class="text-center">Anamnesis</h3>
+        <h3 class="text-center">Examen Fisico</h3>
+        <h3 class="text-center">Diagnostico</h3>
+        <h3 class="text-center">Laboratorio</h3>
+        <h3 class="text-center">Diagnostico por Imagenes - Exámenes</h3>
+        <h3 class="text-center">Procedimientos</h3>
+        <h3 class="text-center">Cirugias</h3>
+        <h3 class="text-center">Farmacia</h3>
+      </div>
+    </div>
+  </div>
 </div>
