@@ -26,32 +26,240 @@
 			      <th scope="row">{{i+1}}</th>
 			      <td>{{his.dni_atendico}}</td>
 			      <td>{{his.nombre_atendido}}</td>
-			      <td><button class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">Historial</button></td>
+			      <td><button class="btn btn-info btn-block" (click)="abrirModalHistorial(his.id_cita)">Historial</button></td>
 			    </tr>
 			  </tbody>
 			</table>
 		</div>
 	</div> 
 </div>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="modalHistorial" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Historial del Paciente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close"  (click)="cerrarModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h3 class="text-center">Antecedentes</h3>
-        <h3 class="text-center">Anamnesis</h3>
-        <h3 class="text-center">Examen Fisico</h3>
-        <h3 class="text-center">Diagnostico</h3>
-        <h3 class="text-center">Laboratorio</h3>
-        <h3 class="text-center">Diagnostico por Imagenes - Exámenes</h3>
-        <h3 class="text-center">Procedimientos</h3>
-        <h3 class="text-center">Caja</h3>
-        <h3 class="text-center">Farmacia</h3>
+      	<div *ngIf="cargar_modal == true">
+      		<div class="row">
+      			<div class="col-md-6">
+			        <h3 class="text-center">Antecedentes</h3>
+					<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+							<th scope="col">#</th>
+							<th scope="col">Descripcion</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr *ngFor="let pro of antecedentes; index as i">
+					      <th scope="row">{{i+1}}</th>
+					      <td>{{pro.descripcion}}</td>
+					    </tr>
+					  </tbody>
+					</table>
+      			</div>
+      			<div class="col-md-6">
+	        		<h3 class="text-center">Anamnesis</h3>
+					<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+							<th scope="col">#</th>
+							<th scope="col">Descripcion</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr *ngFor="let ciru of anamnesis; index as i">
+					      <th scope="row">{{i+1}}</th>
+					      <td>{{ciru.descripcion}}</td>
+					    </tr>
+					  </tbody>
+					</table>
+      			</div>
+      			<div class="col-md-6">
+      				<h3 class="text-center">Examen Fisico</h3>
+					<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+							<th scope="col">#</th>
+							<th scope="col">Examen</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr *ngFor="let fis of fisico; index as i">
+					      <th scope="row">1</th>
+					      <td>{{fis.descripcion}}</td>
+					    </tr>
+					  </tbody>
+					</table>
+      			</div>
+      			<div class="col-md-6">
+      				<h3 class="text-center">Diagnostico</h3>
+						<table class="table">
+						  <thead class="thead-dark">
+						    <tr>
+								<th scope="col">#</th>
+								<th scope="col">Diagnóstico</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr *ngFor="let diag of diagnostico; index as i">
+						      <th scope="row">1</th>
+						      <td>{{diag.descripcion}}</td>
+						    </tr>
+						  </tbody>
+						</table>
+      			</div>
+      			<div class="col-md-6">
+      				<h3 class="text-center">Laboratorio</h3>
+					<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Laboratorio</th>
+					      <th scope="col">Cantidad</th>
+					      <th scope="col">Indicación</th>
+					      <th scope="col">CPT</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr *ngFor="let lab of laboratorio; index as i">
+					      <th scope="row">{{i+1}}</th>
+					      <td>{{lab.descripcion}}</td>
+					      <td>{{lab.cantidad}}</td>
+					      <td>{{lab.indicacion}}</td>
+					      <td>{{lab.cpt}}</td>
+					    </tr>
+					  </tbody>
+					</table>
+      			</div>
+      			<div class="col-md-6">
+      				<h3 class="text-center">Diagnostico por Imagenes - Exámenes</h3>
+					<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">#</th>	 
+					      <th scope="col">Laboratorio</th>
+					      <th scope="col">Cantidad</th>
+					      <th scope="col">Indicación</th>
+					      <th scope="col">CPT</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr *ngFor="let ex of imagen_examen; index as i">
+					      <th scope="row">{{i+1}}</th>
+					      <td>{{ex.descripcion}}</td>
+					      <td>{{ex.cantidad}}</td>
+					      <td>{{ex.indicacion}}</td>
+					      <td>{{ex.cpt}}</td>
+					    </tr>
+					  </tbody>
+					</table>
+      			</div>
+      			<div class="col-md-6">
+      				<h3 class="text-center">Procedimientos</h3>
+						<table class="table">
+						  <thead class="thead-dark">
+						    <tr>
+								<th scope="col">#</th>
+								<th scope="col">Procedimiento</th>
+								<th scope="col">Cantidad</th>
+								<th scope="col">Indicación</th>
+								<th scope="col">CPT</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr *ngFor="let pro of procedimiento; index as i">
+						      <th scope="row">1</th>
+						      <td>{{pro.descripcion}}</td>
+						      <td>{{pro.cantidad}}</td>
+						      <td>{{pro.indicacion}}</td>
+						      <td>{{pro.cpt}}</td>
+						    </tr>
+						  </tbody>
+						</table>
+      			</div>
+      			<div class="col-md-6">
+      				<h3 class="text-center">Caja</h3>
+						<table class="table">
+						  <thead class="thead-dark">
+						    <tr>
+								<th scope="col">#</th>
+								<th scope="col">Caja</th>
+								<th scope="col">Cantidad</th>
+								<th scope="col">Indicación</th>
+								<th scope="col">Pago</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr *ngFor="let ciru of caja; index as i">
+						      <th scope="row">1</th>
+						      <td>{{ciru.descripcion}}</td>
+						      <td>{{ciru.cantidad}}</td>
+						      <td>{{ciru.indicacion}}</td>
+						      <td>{{ciru.cpt}}</td>
+						    </tr>
+						  </tbody>
+						</table>
+      			</div>
+      			<div class="col-md-12">
+      				<h3 class="text-center">Farmacia</h3>
+						<table class="table">
+						  <thead class="thead-dark">
+						    <tr>
+						      <th scope="col">#</th>
+						      <th scope="col">Productos</th>
+						      <th scope="col">Cantidad</th>
+						      <th scope="col">Vía</th>
+						      <th scope="col">Días</th>
+						      <th scope="col">Cada (HRS)</th>
+						      <th scope="col">INDICACIÓN</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr *ngFor="let profa of farmacia; index as i">
+						      <th scope="row">{{i+1}}</th>
+						      <td>{{profa.nombre}}</td>
+						      <td>{{profa.cantidad}}</td>
+						      <td>{{profa.via}}</td>
+						      <td>{{profa.dia}}</td>
+						      <td>{{profa.hora}}</td>
+						      <td>{{profa.indicaciones}}</td>
+						    </tr>
+						  </tbody>
+						</table>
+      			</div>
+      		</div>
+      	</div>
+					<div *ngIf="cargar_modal == false">
+						<div class="spinner-grow text-primary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-light" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+						  <span class="sr-only">Loading...</span>
+						</div>
+					</div>
       </div>
     </div>
   </div>

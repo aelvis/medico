@@ -12,6 +12,16 @@ export class HistorialComponent implements OnInit {
 	public id_cita;
 	public cargar_inicio:boolean;
 	public historial;
+	public antecedentes;
+	public anamnesis;
+	public fisico;
+	public diagnostico;
+	public laboratorio;
+	public imagen_examen;
+	public procedimiento;
+	public caja;
+	public farmacia;
+	public cargar_modal;
   	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) {
   		this.route.params.forEach(x => this.id_cita = x['id_cita']);
    	}
@@ -45,5 +55,38 @@ export class HistorialComponent implements OnInit {
 	  			this.cargar_inicio = true;
 	  		}
 	  	);
+  	}
+  	abrirModalHistorial(id){
+  		this.cargar_modal = false;
+ 	  	this._usuarioService.obtenerIdService(id).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					this.cargar_modal = true;
+					this.antecedentes = res["mensaje"].antecedentes;
+					this.anamnesis = res["mensaje"].anamnesis;
+					this.fisico = res["mensaje"].fisico;
+					this.diagnostico = res["mensaje"].diagnostico;
+					this.laboratorio = res["mensaje"].laboratorio;
+					this.imagen_examen = res["mensaje"].imagen_examen;
+					this.procedimiento = res["mensaje"].procedimiento;
+					this.caja = res["mensaje"].caja;
+					this.farmacia = res["mensaje"].farmacia;
+					$('#modalHistorial').modal('show');
+				}
+	  		},
+	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  			this.cargar_modal = false;
+	  			$('#modalHistorial').modal('hide');
+	  		}
+	  	);
+  		
+  	}
+  	cerrarModal(){
+  		this.cargar_modal = false;
+  		$('#modalHistorial').modal('hide');
   	}
 }

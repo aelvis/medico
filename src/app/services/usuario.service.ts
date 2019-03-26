@@ -307,4 +307,10 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/agregarFisicoNuevo', params, {headers: headers});	
 	}
+	obtenerIdService(codex){
+		let params = new HttpParams();
+		params = params.append('codex', codex);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/historialMedicoId', params, {headers: headers});	
+	}
 }

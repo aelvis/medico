@@ -231,8 +231,8 @@
 		    <tr >
 		    <tr *ngFor="let diag of lista_diagnostico; index as i">
 		      <th scope="row">{{i+1}}</th>
-		      <td>{{diag.descripcion}}</td>
-		      <td><button class="btn btn-success" (click)="agregarDiagnosticoComponent(diag.id_diagnostico)">Agregar</button></td>
+		      <td>{{diag.dec10}}</td>
+		      <td><button class="btn btn-success" (click)="agregarDiagnosticoComponent(diag.id10)">Agregar</button></td>
 		    </tr>
 		  </tbody>
 		</table>
