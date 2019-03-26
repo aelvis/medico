@@ -94,6 +94,10 @@
 		<div class="col-md-6">
 		<br><br>
 		<h2 class="text-center">CAJA</h2>
+		<div *ngIf="cirugia_if == false">
+			
+		</div>
+		<div *ngIf="cirugia_if == true">
 		<input type="text" #buscar_ciru class="form-control is-valid" (KeyUp.enter)="buscarCirugia(buscar_ciru.value)"> <br>
 			<table *ngIf="cargar_inicio == true" class="table">
 			  <thead class="thead-dark">
@@ -169,6 +173,8 @@
 						  <span class="sr-only">Loading...</span>
 						</div>
 					</div>
+		</div>
+
 		</div>
 	</div>
 </div>

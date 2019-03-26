@@ -20,6 +20,7 @@ export class ProcedimientoComponent implements OnInit {
 	public eliminar_procedimiento;
 	public eliminar_cirugia;
 	public agregar_caja;
+	public cirugia_if:boolean;
   	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) {
   		this.route.params.forEach(x => this.id_cita = x['id_cita']);
   		this.cargar_inicio = true;
@@ -45,7 +46,12 @@ export class ProcedimientoComponent implements OnInit {
 				}else{
 					if(res["mensaje"].procedimiento){
 						this.procedimiento = res["mensaje"].procedimiento;
-						this.cirugia = res["mensaje"].cirugia;
+						if(res["mensaje"].cirugia == 0){
+							this.cirugia_if = false;
+						}else{
+							this.cirugia_if = true;
+							this.cirugia = res["mensaje"].cirugia;
+						}
 						this.cargar_inicio = true;
 						this.cargar_procedimiento = true;
 						this.cargar_cirugias = true;
