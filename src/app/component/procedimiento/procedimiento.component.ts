@@ -256,7 +256,6 @@ export class ProcedimientoComponent implements OnInit {
 					this._router.navigate(['/login']);
 				}else{
 					if(res["mensaje"].codigo == 'success'){
-						//$('#cirugias').modal('hide');
 						this.buscarCirugia(this.agregar_caja);
 					}else{
 						this.showError("Alerta","Error de Internet - Volver a Intentarlo");
@@ -269,7 +268,6 @@ export class ProcedimientoComponent implements OnInit {
 	  			this.showError("Alerta","Error de Internet");
 	  		}
 	  	);
-
 	}
 	cerrarCaja(){
 		$('#cirugias').modal('hide');

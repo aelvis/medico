@@ -18,6 +18,7 @@ export class FisicoComponent implements OnInit {
 	public lista_diagnostico;
 	public eliminar_fisico;
 	public eliminar_diagnostico;
+	public agregar_fisico_nuevo;
   	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) { 
   		this.route.params.forEach(x => this.id_cita = x['id_cita']);
   		this.cargar_inicio = true;
@@ -202,5 +203,31 @@ export class FisicoComponent implements OnInit {
 	  			this.eliminar_diagnostico = true;
 	  		}
 	  	);
+	}
+	agregarFisicoNuevoController(){
+		this.cargar_fisico = false;
+	  	this._usuarioService.agregarFisicoNuevoService(this.agregar_fisico_nuevo).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.buscarFisicoComponent(this.agregar_fisico_nuevo);
+					}else{
+						this.showError("Alerta","Error de Internet - Volver a Intentarlo");
+						this.cargar_fisico = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.cargar_fisico = true;
+	  			this.showError("Alerta","Error de Internet");
+	  		}
+	  	);
+	}
+	cerrarCaja(){
+		$('#fisico_modal').modal('hide');
+		this.agregar_fisico_nuevo = "";
 	}
 }

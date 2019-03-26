@@ -164,6 +164,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
+      	<label>Exámen Físico</label>
+      	<input type="text" class="form-control is-valid" [(ngModel)]="agregar_fisico_nuevo" (KeyUp.enter)="agregarFisicoNuevoController()"><br>
 		<table *ngIf="cargar_fisico == true" class="table">
 		  <thead class="thead-dark">
 		    <tr>
