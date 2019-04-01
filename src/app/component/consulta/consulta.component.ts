@@ -10,9 +10,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ConsultaComponent implements OnInit {
 	public atencion:any = [];
-  constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router) { 
-
-  }
+	public inicio:boolean;
+	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router) { 
+		this.inicio = true;
+	}
 	ngOnInit(){
 		this.obtenerCitas();
 	}
@@ -23,6 +24,7 @@ export class ConsultaComponent implements OnInit {
     	this.toastr.error(mensaje, titulo);
   	}
 	obtenerCitas(){
+		this.inicio = false;
 		this._usuarioService.obtenerCitasMedicoSucursal().subscribe(
 			res => {
 				if(res["mensaje"].terminar){
@@ -31,13 +33,16 @@ export class ConsultaComponent implements OnInit {
 				}else{
 					if(res["mensaje"].medico){
 						this.atencion = res["mensaje"].medico;
+						this.inicio = true;
 					}else{
 						this.atencion = "No hay productos...";
+						this.inicio = true;
 					}
 				}
 			},
 			error => {
 				this.showSuccess("Alerta","Error de Internet");
+				this.inicio = true;
 			}
 		);
 	}
