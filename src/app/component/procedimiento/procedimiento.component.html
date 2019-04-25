@@ -90,6 +90,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
+      	<label>Procedimientos</label>
+      	<input type="text" class="form-control is-valid" [(ngModel)]="agregar_procedimientos_nuevo" (KeyUp.enter)="agregarProcedimientosController()"><br>
 		<table *ngIf="cargar_procedimiento == true" class="table">
 		  <thead class="thead-dark">
 		    <tr>

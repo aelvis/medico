@@ -84,6 +84,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
+      	<label>Laboratorio</label>
+      	<input type="text" class="form-control is-valid" [(ngModel)]="agregar_laboratorio_nuevo" (KeyUp.enter)="agregarLaboratorioNuevoController()"><br>
 		<table *ngIf="cargar_lab == true" class="table">
 		  <thead class="thead-dark">
 		    <tr>
@@ -114,6 +116,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
+      	<label>Diagnostico por imagenes - Exámenes</label>
+      	<input type="text" class="form-control is-valid" [(ngModel)]="agregar_diagnostico_nuevo" (KeyUp.enter)="agregarExamenController()"><br>
 		<table *ngIf="cargar_diag == true" class="table">
 		  <thead class="thead-dark">
 		    <tr>

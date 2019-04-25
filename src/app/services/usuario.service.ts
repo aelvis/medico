@@ -308,6 +308,24 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/agregarFisicoNuevo', params, {headers: headers});	
 	}
+	agregarLaboratorioNuevoService(descripcion){
+		let params = new HttpParams();
+		params = params.append('descripcion', descripcion);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarlaboratorioNuevo', params, {headers: headers});	
+	}
+	agregarExaenDiagnosticoNuevoService(descripcion){
+		let params = new HttpParams();
+		params = params.append('descripcion', descripcion);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarExaenDiagnosticoNuevoService', params, {headers: headers});	
+	}
+	agregarProcedimientosControllerxD(descripcion){
+		let params = new HttpParams();
+		params = params.append('descripcion', descripcion);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/agregarProcedimientoNuevoService', params, {headers: headers});	
+	}
 	obtenerIdService(codex){
 		let params = new HttpParams();
 		params = params.append('codex', codex);

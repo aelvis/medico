@@ -18,6 +18,8 @@ export class LaboratorioComponent implements OnInit {
 	public cargar_diag:boolean;
 	public cargar_lab:boolean;
 	public cargar_inicio:boolean;
+	public agregar_laboratorio_nuevo;
+	public agregar_diagnostico_nuevo;
   constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) {
   		this.route.params.forEach(x => this.id_cita = x['id_cita']);
   		this.eliminar_lab = true;
@@ -232,6 +234,52 @@ export class LaboratorioComponent implements OnInit {
 				}
 	  		},
 	  		error => {
+	  			this.showError("Alerta","Error de Internet");
+	  		}
+	  	);
+	}
+	agregarLaboratorioNuevoController(){
+		this.cargar_inicio = false;
+	  	this._usuarioService.agregarLaboratorioNuevoService(this.agregar_laboratorio_nuevo).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.cargar_inicio = true;
+						this.buscarlab(this.agregar_laboratorio_nuevo);
+					}else{
+						this.showError("Alerta","Error de Internet - Volver a Intentarlo");
+						this.cargar_inicio = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.cargar_inicio = true;
+	  			this.showError("Alerta","Error de Internet");
+	  		}
+	  	);
+	}
+	agregarExamenController(){
+		this.cargar_inicio = false;
+	  	this._usuarioService.agregarExaenDiagnosticoNuevoService(this.agregar_diagnostico_nuevo).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.cargar_inicio = true;
+						this.buscarDiag(this.agregar_diagnostico_nuevo);
+					}else{
+						this.showError("Alerta","Error de Internet - Volver a Intentarlo");
+						this.cargar_inicio = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.cargar_inicio = true;
 	  			this.showError("Alerta","Error de Internet");
 	  		}
 	  	);

@@ -22,6 +22,7 @@ export class ProcedimientoComponent implements OnInit {
 	public agregar_caja;
 	public cirugia_if:boolean;
 	public id_caja_pago;
+	public agregar_procedimientos_nuevo;
   	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router, private route:ActivatedRoute) {
   		this.route.params.forEach(x => this.id_cita = x['id_cita']);
   		this.cargar_inicio = true;
@@ -83,8 +84,7 @@ export class ProcedimientoComponent implements OnInit {
 						this.cargar_procedimiento = true;
 					}else{
 						this.showError("Alerta","Volver a Intentarlo");
-						this.cargar_procedimiento = false;
-						$('#procedimientos').modal('hide');
+						this.cargar_procedimiento = true;
 					}
 				}
 	  		},
@@ -300,6 +300,29 @@ export class ProcedimientoComponent implements OnInit {
 	  		error => {
 	  			this.showError("Alerta","Error de Internet");
 	  			this.cargar_procedimiento = true;
+	  		}
+	  	);
+	}
+	agregarProcedimientosController(){
+		this.cargar_procedimiento = false;
+	  	this._usuarioService.agregarProcedimientosControllerxD(this.agregar_procedimientos_nuevo).subscribe(
+	  		res => {
+				if(res["mensaje"].terminar){
+					localStorage.clear();
+					this._router.navigate(['/login']);
+				}else{
+					if(res["mensaje"].codigo == 'success'){
+						this.cargar_procedimiento = true;
+						this.buscarProcedimientos(this.agregar_procedimientos_nuevo);
+					}else{
+						this.showError("Alerta","Error de Internet - Volver a Intentarlo");
+						this.cargar_procedimiento = true;
+					}
+				}
+	  		},
+	  		error => {
+	  			this.cargar_procedimiento = true;
+	  			this.showError("Alerta","Error de Internet");
 	  		}
 	  	);
 	}
