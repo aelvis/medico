@@ -12,13 +12,14 @@ import { FarmaciaComponent } from './component/farmacia/farmacia.component';
 import { HistorialComponent } from './component/historial/historial.component';
 import { FisicoComponent } from './component/fisico/fisico.component';
 import { AdminGuard } from './services/admin.guard';
-
+import { PacienteComponent } from './component/paciente/paciente.component';
 const appRoutes: Routes = [
 	{path: '', component: LoginComponent},
 	{path: '', redirectTo: 'login', pathMatch: 'full'},
 	{path: 'login', component: LoginComponent},
 	{path: 'inicio', component: ConsultaComponent, canActivate: [AdminGuard]},
 	{path: 'consulta', component: ConsultaComponent, canActivate: [AdminGuard]},
+	{path: 'paciente', component: PacienteComponent, canActivate: [AdminGuard]},
 	{path: 'consulta/:id_cita', component: ConsultaVerComponent, canActivate: [AdminGuard]},
 	{path: 'consulta/laboratorio/:id_cita', component: LaboratorioComponent, canActivate: [AdminGuard]},
 	{path: 'consulta/procedimiento/:id_cita', component: ProcedimientoComponent, canActivate: [AdminGuard]},
@@ -29,4 +30,4 @@ const appRoutes: Routes = [
 ];
 
 export const appRoutingProviders: any[] = [];
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, { enableTracing: true, useHash:true });
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, { enableTracing: false, useHash:true });

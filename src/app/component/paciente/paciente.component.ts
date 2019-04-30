@@ -4,18 +4,19 @@ import { UsuarioService } from '../../services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-consulta',
-  templateUrl: './consulta.component.html',
-  styleUrls: ['./consulta.component.css']
+  selector: 'app-paciente',
+  templateUrl: './paciente.component.html',
+  styleUrls: ['./paciente.component.css']
 })
-export class ConsultaComponent implements OnInit {
-	public atencion:any = [];
+export class PacienteComponent implements OnInit {
+	public paciente:any = [];
+	public paciente_lista:any = [];
 	public inicio:boolean;
 	constructor(private toastr: ToastrService, private _usuarioService: UsuarioService, private _router: Router) { 
 		this.inicio = true;
 	}
 	ngOnInit(){
-		this.obtenerCitas();
+		this.obtenerPaciente();
 	}
 	showSuccess(titulo,mensaje) {
     	this.toastr.success(mensaje, titulo);
@@ -23,16 +24,16 @@ export class ConsultaComponent implements OnInit {
   	showError(titulo,mensaje) {
     	this.toastr.error(mensaje, titulo);
   	}
-	obtenerCitas(){
+	obtenerPaciente(){
 		this.inicio = false;
-		this._usuarioService.obtenerCitasMedicoSucursal().subscribe(
+		this._usuarioService.obtenerPacienteService().subscribe(
 			res => {
 				if(res["mensaje"].terminar){
 				  	localStorage.clear();
 				  	this._router.navigate(['/login']);
 				}else{
-					if(res["mensaje"].medico){
-						this.atencion = res["mensaje"].medico;
+					if(res["mensaje"].paciente){
+						this.paciente = res["mensaje"].paciente;
 						this.inicio = true;
 					}else{
 						this.showError("Alerta","No hay Ingresos");
@@ -46,16 +47,17 @@ export class ConsultaComponent implements OnInit {
 			}
 		);
 	}
-	obtenerCitasFecha(fecha){
+	abrirModalVer(buscar){
 		this.inicio = false;
-		this._usuarioService.obtenerCitasMedicoSucursalFecha(fecha).subscribe(
+		this._usuarioService.obtenerPacienteServiceLista(buscar).subscribe(
 			res => {
 				if(res["mensaje"].terminar){
 				  	localStorage.clear();
 				  	this._router.navigate(['/login']);
 				}else{
-					if(res["mensaje"].medico){
-						this.atencion = res["mensaje"].medico;
+					if(res["mensaje"].lista){
+						this.paciente_lista = res["mensaje"].lista;
+						$('#exampleModal').modal('show');
 						this.inicio = true;
 					}else{
 						this.showError("Alerta","No hay Ingresos");
@@ -68,5 +70,10 @@ export class ConsultaComponent implements OnInit {
 				this.inicio = true;
 			}
 		);
+		
+	}
+	cambiarDeUrl(url){
+		$('#exampleModal').modal('hide');
+ 		this._router.navigate([url]);
 	}
 }

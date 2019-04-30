@@ -1,0 +1,65 @@
+<nav-component></nav-component>
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12" *ngIf="inicio == true">
+			<h1 class="h3 mb-3 font-weight-normal text-center" style="color: red">PACIENTES</h1>	
+			<table class="table">
+			  <thead class="thead-light">
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Codigo Atendido</th>
+			      <th scope="col">Nombre</th>
+			      <th scope="col">Lista de Atenciones</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr *ngFor="let aten of paciente; index as i">
+			      <th scope="row">{{i+1}}</th>
+			      <td>{{aten.codigo_filtro}}</td>
+			      <td>{{aten.nombre_atendido}}</td>
+			      <td><button class="btn btn-success" (click)="abrirModalVer(aten.codigo_filtro)">Atenciones</button></td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+		<div class="col-md-12" *ngIf="inicio == false">
+			<div class="loader" id="loader">Loading...</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Lista de Atenciones</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+			<table class="table">
+			  <thead class="thead-light">
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Fecha</th>
+			      <th scope="col">Codigo Atendido</th>
+			      <th scope="col">Nombre</th>
+			      <th scope="col">Verificar Atención</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr *ngFor="let aten of paciente_lista; index as i">
+			      <th scope="row">{{i+1}}</th>
+			      <td>{{aten.date}}</td>
+			      <td>{{aten.codigo_filtro}}</td>
+			      <td>{{aten.nombre_atendido}}</td>
+			      <td><button class="btn btn-success" (click)="cambiarDeUrl('/consulta/'+aten.id);">Verificar</button></td>
+			    </tr>
+			  </tbody>
+			</table>
+      </div>
+    </div>
+  </div>
+</div>

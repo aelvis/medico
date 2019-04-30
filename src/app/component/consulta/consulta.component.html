@@ -1,8 +1,15 @@
 <nav-component></nav-component>
 <br>
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12" *ngIf="inicio == true">
+			<form class="form-inline">
+				<div class="form-group mx-sm-3 mb-2">
+		    		<input type="date" class="form-control" #fecha>
+		  		</div>
+		  		<button class="btn btn-success" (click)="obtenerCitasFecha(fecha.value)">Buscar</button>
+		  	</form>
+
 			<h1 class="h3 mb-3 font-weight-normal text-center" style="color: red">BIENVENIDOS A CONSULTAS</h1>	
 			<table class="table">
 			  <thead class="thead-light">
@@ -10,15 +17,25 @@
 			      <th scope="col">#</th>
 			      <th scope="col">Documento</th>
 			      <th scope="col">Nombre</th>
-			      <th scope="col">Ingresar</th>
+			      <th scope="col">Peso</th>
+			      <th scope="col">Talla</th>
+			      <th scope="col">Temperatura</th>
+			      <th scope="col">FR</th>
+			      <th scope="col">FC</th>
+			      <th scope="col">Descripción</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			    <tr *ngFor="let aten of atencion; index as i">
 			      <th scope="row">{{i+1}}</th>
-			      <td>{{aten.dni_atendico}}</td>
+			      <td [routerLink]="['/consulta',aten.id_cita]">{{aten.dni_atendico}}</td>
 			      <td>{{aten.nombre_atendido}}</td>
-			      <th><button class="btn btn-info" [routerLink]="['/consulta',aten.id_cita]">Atender</button></th>
+			      <td>{{aten.peso}}</td>
+			      <td>{{aten.talla}}</td>
+			      <td>{{aten.temperatura}}</td>
+			      <td>{{aten.fr}}</td>
+			      <td>{{aten.fc}}</td>
+			      <td>{{aten.porque_cita}}</td>
 			    </tr>
 			  </tbody>
 			</table>

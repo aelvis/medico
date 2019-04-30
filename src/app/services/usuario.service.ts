@@ -35,6 +35,24 @@ export class UsuarioService{
 		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
 		return this._http.post(this.url+'/atencion/medico/obtenerCita', params, {headers: headers});
 	}
+	obtenerCitasMedicoSucursalFecha(fecha){
+		let params = new HttpParams();
+		params = params.append('nuevo', fecha);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/obtenerCita', params, {headers: headers});
+	}
+	obtenerPacienteService(){
+		let params = new HttpParams();
+		params = params.append('nuevo', 'nuevo');
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/obtenerPaciente', params, {headers: headers});	
+	}
+	obtenerPacienteServiceLista(fecha){
+		let params = new HttpParams();
+		params = params.append('listar', fecha);
+		let headers = new HttpHeaders({'Content-Type':'application/json','Authorization': this.getToken()});
+		return this._http.post(this.url+'/atencion/medico/obtenerPacienteListaBuscar', params, {headers: headers});		
+	}
 	obtenerProductoFarmaciarMedico(codex_ls_sad){
 		let params = new HttpParams();
 		params = params.append('codex_ls_sad', codex_ls_sad);
