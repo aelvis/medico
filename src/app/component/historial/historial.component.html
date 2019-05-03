@@ -17,8 +17,6 @@
 			    <tr>
 			      <th scope="col">#</th>
 			      <th>FECHA</th>
-			      <th scope="col">DNI</th>
-			      <th scope="col">NOMBRE</th>
 			      <th scope="col">PESO</th>
 			      <th scope="col">TALLA</th>
 			      <th scope="col">TEMPERATURA</th>
@@ -32,8 +30,6 @@
 			    <tr *ngFor="let his of historial;index as i">
 			      <th scope="row">{{i+1}}</th>
 				<td>{{his.fecha}}</td>
-			      <td>{{his.dni_atendico}}</td>
-			      <td>{{his.nombre_atendido}}</td>
 			      <td>{{his.peso}}</td>
 			      <td>{{his.talla}}</td>
 			      <td>{{his.temperatura}}</td>

@@ -15,7 +15,6 @@
 			  <thead class="thead-light">
 			    <tr>
 			      <th scope="col">#</th>
-			      <th scope="col">Documento</th>
 			      <th scope="col">Nombre</th>
 			      <th scope="col">Peso</th>
 			      <th scope="col">Talla</th>
@@ -28,8 +27,7 @@
 			  <tbody>
 			    <tr *ngFor="let aten of atencion; index as i">
 			      <th scope="row">{{i+1}}</th>
-			      <td [routerLink]="['/consulta',aten.id_cita]">{{aten.dni_atendico}}</td>
-			      <td>{{aten.nombre_atendido}}</td>
+			      <td [routerLink]="['/consulta',aten.id_cita]">{{aten.nombre_atendido}}</td>
 			      <td>{{aten.peso}}</td>
 			      <td>{{aten.talla}}</td>
 			      <td>{{aten.temperatura}}</td>
